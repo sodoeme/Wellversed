@@ -1,0 +1,34 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt");
+const userSchema = new Schema({
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  job_title: { type: String, required: true },
+  areas_of_exp: { type: [String] },
+  bio: String,
+  pic: String,
+  status: { Boolean, default: false },
+});
+
+userSchema.pre("save", function (next) {
+  let user = this;
+  if (!user.isModified("password")) return next();
+  bcrypt
+    .hash(user.password, 10)
+    .then((hash) => {
+      user.password = hash;
+      next();
+    })
+    .catch((err) => next(error));
+});
+
+userSchema.methods.comparePassword = function (inputPassword) {
+  let user = this;
+  return bcrypt.compare(inputPassword, user.password);
+};
+
+//collection name is stories in the database
+module.exports = mongoose.model("User", userSchema);
