@@ -29,9 +29,6 @@ app.use(
 );
 
 //routes
-app.use('/user', userRoutes)
-app.use('/product', productRoutes)
-app.use('/favorites', favoriteRoutes)
 
 
 mongoose.connection.once('open', ()=>{
