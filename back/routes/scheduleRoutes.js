@@ -8,7 +8,7 @@ router.get('volunteer/:id', scheduleController.getAllSchedules)
 
 
 //return all schedules correlating to organization
-router.get('organization/:id', scheduleController.getAllSchedules)
+router.get('organization/:id', scheduleController.getSchedule)
 
 //create schedule
 
@@ -16,7 +16,7 @@ router.post('/create', scheduleController.postSchedule)
 
 // add volunteer to schedule
 
-router.put('/pickup/:id', scheduleController.pickupVolunteer)
+router.put('/pickup', scheduleController.pickupVolunteer)
 
 // remove volunteer from schedule
    
