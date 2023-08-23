@@ -6,6 +6,7 @@ import { FaUserCircle } from "react-icons/fa";
 import "./NavBar.css";
 import Home from "./homeComponents/Home";
 import Contact from "./contactComponents/Contact";
+import Login from "./loginComponents/Login";
 import Footer from "./Footer";
 
 function NavBar() {
@@ -67,7 +68,7 @@ function NavBar() {
         <Route path="/" element={<Home />} />
         {/* Adjust paths to created components */}
         <Route path="/contact" element={<Contact />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<Login />} />
         <Route path="/" element={<Home />} />
       </Routes>
       <Footer />
