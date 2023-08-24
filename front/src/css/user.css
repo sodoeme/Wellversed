@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&family=Poppins:wght@300;400;500;600;700&family=Shadows+Into+Light&family=Work+Sans:wght@300;400&display=swap');
+* {
+    margin: 0;
+    font-family: 'work sans';
+     
+}
+
+.User-Page {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr, 1fr;
+    column-gap: 10px;
+}
+
+.Header {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    background-color: rgb(236, 168, 41);
+    color:rgb(148, 13, 13);
+
+}
+
+
+.Profile-Header {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    background-color: rgb(148, 13, 13);
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.User-info {   
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding-top: 10px;
+   grid-column-start: 1;
+   grid-column-end: 2;
+   background-color: #fffef3;
+   color: black;
+
+}
+.User-info h3 {
+font-size: 2em;
+
+}
+
+.volunteer-info {
+    padding: 10px;
+    background-color: rgb(251, 217, 155);
+    border-style: solid;
+    font-size: 12px;
+    
+
+    
+}
+
+.About {
+    padding-top: 20px;
+    grid-row-start: 4;
+    background-color:  #fffef3;
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   
+}
+
+.about-info {
+   grid-row-start: 5;
+   background-color: white;
+   font-size: 15px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color:  #fffef3;
+   padding: 50px;
+   
+}
+
+
+.Main-section {
+    grid-row-start: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* padding-left: 70px;
+    padding-top: 30px; */
+    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+    
+    
+}
+
+.prof-name {
+    font-size: 2em;
+}
+button {
+    padding: 15px;
+    background:rgb(148, 13, 13);
+    color: white;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+}
+
+.causes-and-interests {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    
+    
+    
+}
+
+.icon {
+    font-size: 20px;
+    color: rgb(148, 13, 13);
+}
+
+.calendar {
+    grid-row-start: 3;
+    grid-column-start: 3;
+    grid-column-end: 4;
+
+
+      display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center; 
+   background-color: #fffef3;
+}
+
+.schedule-icon {
+   font-size: 12rem;
+}
+
+
+img {
+    width: 27%;
+    height: 20%;
+    border-radius: 100rem;
+    border: solid 5px;
+    box-shadow: 5px 4px #888888;
+
+}
+
+
+
+
+/* responsive styling */
+
+
+/* For Tablet View */
+@media (max-width: 768px) {
+    .User-Page {
+        display: grid;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr;
+    /* column-gap: 10px; */
+    }
+
+    .Header {
+
+    }
+
+    .Profile-Header {
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .User-info {
+        grid-row-start: 3;
+        grid-column-start: 1;
+   grid-column-end: 4;
+    }
+
+    .Main-section {
+        grid-row-start: 4;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+    }
+
+    .causes-and-interests {
+        grid-row-start: 5;
+    }
+
+    .calendar {
+        grid-row-start: 5;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        padding: 20px;
+    }
+    
+    /* Other adjustments for tablet view ... */
+}
+
+/* For Mobile View */
+@media (max-width: 480px) {
+    .User-Page {
+        display: grid;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr;
+    /* column-gap: 10px; */
+    }
+
+    .Header {
+
+    }
+
+    .Profile-Header {
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .User-info {
+        grid-row-start: 3;
+        grid-column-start: 1;
+   grid-column-end: 4;
+    }
+
+    .Main-section {
+        grid-row-start: 4;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+    }
+
+    .causes-and-interests {
+        grid-row-start: 5;
+    }
+
+    .calendar {
+        grid-row-start: 5;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        padding: 20px;
+    }
+
+    /* Adjustments for mobile view ... */
+}
+
