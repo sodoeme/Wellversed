@@ -7,7 +7,7 @@ const volunteerController = require('../controller/volunteerController');
 // get(“/volunteer/:id”): return single volunteer
 // post(“/login”): returns token volunteer
 //post(“/signup”): creates volunteer in db
- 
+
 // get all volunteers
 router.get('/', volunteerController.getAllVolunteers)
 

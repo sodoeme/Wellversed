@@ -29,6 +29,7 @@ app.use(
 );
 
 //routes 
+//must mount route in server file
 app.use("/volunteer", volunteerRoutes)
 
 mongoose.connection.once('open', ()=>{
