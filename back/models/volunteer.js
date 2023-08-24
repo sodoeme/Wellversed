@@ -10,7 +10,7 @@ const volunteerSchema = new Schema({
   areas_of_exp: { type: [String] },
   bio: String,
   pic: String,
-  status: { Boolean, default: false },
+  status: { type: Boolean, default: false },
 });
 
 volunteerSchema.pre("save", function (next) {

@@ -8,7 +8,7 @@ const cors = require('cors')
 const corsOption = require('./config/corsOptions')
 const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
-
+const volunteerRoutes = require("./routes/volunteerRoutes")
 const PORT = 3500
 connectDB();
 
@@ -28,8 +28,8 @@ app.use(
   })
 );
 
-//routes
-
+//routes 
+app.use("/volunteer", volunteerRoutes)
 
 mongoose.connection.once('open', ()=>{
   console.log('Connected to MongoDB')

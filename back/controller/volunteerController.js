@@ -1,6 +1,6 @@
 const Volunteer = require("../models/volunteer");
-const jwt = require('jasonwebtoken');
-
+const jwt = require('jsonwebtoken');
+ 
 
 
 exports.getAllVolunteers = async(req, res) =>{
@@ -48,9 +48,9 @@ exports.login = async (req, res) => {
     email = email.toLowerCase();
 
     // here we check if user is existing in DB
-    const exists = await Volunteer.findone({email: email})
+    const exists = await Volunteer.findOne({email: email})
 
-    if(!exist){
+    if(!exists){
         return res.status(400).json({ message: "Volunteer does not exists" })
     }
 
@@ -76,6 +76,8 @@ exports.login = async (req, res) => {
         secure: true, //https
         sameSite: 'None', //cross-site cookie 
     })
+
+    return res.json(accessToken)
 }
 
 exports.signUp = async (req, res) => {

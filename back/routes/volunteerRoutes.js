@@ -7,15 +7,17 @@ const volunteerController = require('../controller/volunteerController');
 // get(“/volunteer/:id”): return single volunteer
 // post(“/login”): returns token volunteer
 //post(“/signup”): creates volunteer in db
-
+ 
 // get all volunteers
 router.get('/', volunteerController.getAllVolunteers)
 
 // get single volunteer
-router.get('/volunteer/:id', productController.getVolunteer)
+router.get('/volunteer/:id', volunteerController.getVolunteer)
 
 // returns token volunteer
-router.route('login').post(volunteerController.login)
+router.route('/login').post(volunteerController.login)
 
 // creates volunteer in db
 router.route('/signup').post(volunteerController.signUp)
+
+module.exports = router
