@@ -8,6 +8,9 @@ import Home from "./homeComponents/Home";
 import Contact from "./contactComponents/Contact";
 import Login from "./loginComponents/Login";
 import SignUp from "./signUpComponents/SignUp";
+import Schedule from "./scheduleComponents/schedule";
+import Orgpf from "./profileComponents/Orgpf";
+import Userpf from "./profileComponents/Userpf";
 import Footer from "./Footer";
 
 function NavBar() {
@@ -38,8 +41,11 @@ function NavBar() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/profile">My Profile</Link>
+                <Link to="/orgpf">My Profile</Link>
               </li>
+              {/* <li>
+                <Link to="/userpf">My Profile</Link>
+              </li> */}
               <li>
                 <Link to="/schedule">Schedule</Link>
               </li>
@@ -66,6 +72,9 @@ function NavBar() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/orgpf" element={<Orgpf />} />
+        <Route path="/userpf" element={<Userpf />} />
       </Routes>
       <Footer />
     </Router>

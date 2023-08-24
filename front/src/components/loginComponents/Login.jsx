@@ -43,7 +43,7 @@ const Login = () => {
     <div className="main-login">
       <div className="content">
         <div className="headings">
-          <h1>Log In</h1>
+          <h1 className="contact-header">Log In</h1>
           <div className="border-container">
             <div className="border"></div>
           </div>

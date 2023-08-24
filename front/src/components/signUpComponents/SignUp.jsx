@@ -73,7 +73,7 @@ const SignUp = () => {
   return (
     <div className="content">
       <div className="headings">
-        <h1>Create Your Account</h1>
+        <h1 className="contact-header">Create Your Account</h1>
         <hr className="header-divider"></hr>
         <div className="border-container">
           <div className="border"></div>

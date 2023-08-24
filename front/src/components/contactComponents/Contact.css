@@ -1,5 +1,5 @@
-h1 {
-  font-size: 32px;
+.contact-header {
+  font-size: 42px;
   line-height: 1.2;
   text-align: center;
   margin-top: 20px;
@@ -13,7 +13,7 @@ hr {
   margin: 1px 40px 10px;
 }
 
-h2 {
+.team-header {
   color: #c1a03eea;
   font-weight: normal;
   font-size: 32px;
@@ -123,8 +123,8 @@ input {
 }
 
 @media (min-width: 768px) {
-  .contact-header h1 {
-    font-size: 42px;
+  .contact-header .contact-header {
+    font-size: 52px;
     margin-top: 30px;
   }
 
@@ -133,7 +133,7 @@ input {
     margin: 1px 100px 10px;
   }
 
-  h2 {
+  .team-header {
     font-size: 40px;
   }
 
@@ -182,7 +182,7 @@ input {
     margin: 1px 158px 10px;
   }
 
-  h2 {
+  .team-header {
     font-size: 35px;
   }
 
