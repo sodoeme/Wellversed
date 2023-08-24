@@ -72,7 +72,7 @@ const Userpf = () => {
         <br />
 
         <div className="causes-and-interests">
-          <h3>Causes</h3>
+          <h3>Your Causes</h3>
           <br />
           <p>
             {" "}
@@ -109,7 +109,7 @@ const Userpf = () => {
           <br />
 
           <br />
-          <h3>Interests</h3>
+          <h3>Your Interests</h3>
 
           <br />
           <p>

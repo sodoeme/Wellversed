@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import User from './user.css';
 
 const Registerclassform = () => {
 
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
+        organizationName: '',
+        representativeName: '',
+        representativeEmail: '',
+        course: '',
+        courseDescription: ''
       });
     
       const handleChange = (event) => {
@@ -25,45 +27,59 @@ const Registerclassform = () => {
 
   return (
     <div>
-      <h2>Registration Form</h2>
-      <form onSubmit={handleSubmit}>
+      {/* <h2>Registration Form</h2> */}
+      <form className='req-form' onSubmit={handleSubmit}>
         <div>
-          <label>First Name:</label>
-          <input
+          <label className='req-label'>Name of Organization:</label>
+          <input 
+            className='req-input'
             type="text"
-            name="firstName"
-            value={formData.firstName}
+            name="organizationName"
+            value={formData.organizationName}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label>Last Name:</label>
-          <input
+          <label className='req-label'>Representative Name:</label>
+          <input 
+            className='req-input'
             type="text"
-            name="lastName"
-            value={formData.lastName}
+            name="representativeName"
+            value={formData.representativeName}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label>Email:</label>
+          <label className='req-label'>Representative Email:</label>
           <input
+            className='req-input'
             type="email"
-            name="email"
+            name="representativeEmail"
             value={formData.email}
             onChange={handleChange}
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label className='req-label'>Name of Course:</label>
           <input
-            type="password"
-            name="password"
-            value={formData.password}
+            className='req-input'
+            type="text"
+            name="course"
+            value={formData.course}
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Register</button>
+        <div>
+          <label className='req-label'>Course Description:</label>
+          <input
+            className='req-input'
+            type="text"
+            name="courseDescription"
+            value={formData.courseDescription}
+            onChange={handleChange}
+          />
+        </div>
+        <button className='req-btn' type="submit">Register</button>
       </form>
     </div>
   )

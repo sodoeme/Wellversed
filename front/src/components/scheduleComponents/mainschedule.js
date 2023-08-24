@@ -13,8 +13,8 @@ import React, { useState, useEffect } from "react";
 import DatePicker from "react-date-picker";
 
 // icons
-import { FaCheck } from "react-icons/fa";
-import { FaTrashAlt } from "react-icons/fa";
+// import { FaCheck } from "react-icons/fa";
+// import { FaTrashAlt } from "react-icons/fa";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
@@ -140,7 +140,7 @@ const Mainschedule = () => {
               <div className="signed-up">
                 <p>
                   {" "}
-                  <FaCheck className="icon" />
+                  {/* <FaCheck className="icon" /> */}
                 </p>
                 <h2>You Are Signed Up To Volunteer For: {selectedEvent.title}!</h2>
               </div>
@@ -154,7 +154,7 @@ const Mainschedule = () => {
               <div className="dropped-class">
                 <p>
                   {" "}
-                  <FaTrashAlt className="drop-icon" />
+                  {/* <FaTrashAlt className="drop-icon" /> */}
                 </p>
                 <h2>You Have Dropped: {selectedEvent.title}!</h2>
               </div>
