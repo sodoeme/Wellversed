@@ -29,6 +29,7 @@ app.use(
 );
 
 //routes
+//must mount route in server file, impoted at top
 app.use("/schedule", scheduleRoutes)
 
 mongoose.connection.once('open', ()=>{
