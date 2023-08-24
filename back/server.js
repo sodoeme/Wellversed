@@ -10,9 +10,7 @@ const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const orgRoutes = require('./routes/orgRoutes')
 const courseRoutes = require('./routes/courseRoutes')
-
-
-
+const volunteerRoutes = require("./routes/volunteerRoutes")
 const PORT = 3500
 connectDB();
 
@@ -32,7 +30,9 @@ app.use(
   })
 );
 
-//routes
+//routes 
+//must mount route in server file
+app.use("/volunteer", volunteerRoutes)
 app.use('/organization', orgRoutes)
 app.use('/course', courseRoutes)
 mongoose.connection.once('open', ()=>{
