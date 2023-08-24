@@ -1,21 +1,26 @@
 import React from "react";
+import { FaUserFriends } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
   return (
-    <>
+    <div className="main-login">
       <div className="content">
         <div className="headings">
           <h1>Log In</h1>
           <div className="border-container">
             <div className="border"></div>
           </div>
-          <h2>
-            No account? <a href="/user/signup">Sign up here</a>
+          <h2 className="signin-blurb">
+            No account?{" "}
+            <Link to="/signup" className="signup-link">
+              Sign up here
+            </Link>
           </h2>
         </div>
         <div className="img-container">
-          <img className="login-img" src="/imgs/login-img.png" alt="" />
+          <FaUserFriends className="login-icon" />
         </div>
 
         <form action="/user" method="post">
@@ -53,23 +58,21 @@ const Login = () => {
 
           <div className="form-group-container">
             <label className="checkbox-label">
-              <input type="checkbox" id="agree" name="agree" required />I agree to the terms and
-              conditions.
+              <input type="checkbox" id="agree" name="agree" className="terms-blurb" required />I
+              agree to the terms and conditions.
             </label>
           </div>
+
+          <Link to="/" className="forgot-blurb">
+            Forgot your username or password?
+          </Link>
 
           <div className="submit-container">
             <input type="submit" className="submit" value="Log In" />
           </div>
         </form>
       </div>
-
-      <div className="forgot">
-        <h2>
-          <a href="/"> Forgot your username or password? </a>
-        </h2>
-      </div>
-    </>
+    </div>
   );
 };
 

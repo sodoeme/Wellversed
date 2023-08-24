@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import BannerIcon from "./BannerIcon";
 import ResourceCard from "./ResourceCard";
+// import SignUp from "../signUpComponents/SignUp";
 import "./Home.css";
 import { FaCalendar, FaDollarSign, FaUser } from "react-icons/fa";
 

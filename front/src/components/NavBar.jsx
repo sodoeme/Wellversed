@@ -7,6 +7,7 @@ import "./NavBar.css";
 import Home from "./homeComponents/Home";
 import Contact from "./contactComponents/Contact";
 import Login from "./loginComponents/Login";
+import SignUp from "./signUpComponents/SignUp";
 import Footer from "./Footer";
 
 function NavBar() {
@@ -69,7 +70,7 @@ function NavBar() {
         {/* Adjust paths to created components */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
       <Footer />
     </Router>

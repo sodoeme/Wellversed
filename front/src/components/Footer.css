@@ -5,11 +5,11 @@
 }
 
 footer {
-  width: 100vw;
+  width: 100% !important;
   background-color: #e8c65fea;
   color: #962d00ff;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1fr, 1fr);
   grid-template-rows: auto auto auto;
   text-align: center;
   margin-top: 0;
