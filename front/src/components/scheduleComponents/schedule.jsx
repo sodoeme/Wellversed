@@ -5,7 +5,7 @@ import Mainschedule from "./mainschedule";
 
 const Schedule = () => {
   return (
-    <div className="User-Page">
+    <div className="schedule-Page">
       {/* <div className="Header">
         <h1>Well-Ver$ed Education</h1>
       </div> */}
@@ -13,7 +13,7 @@ const Schedule = () => {
       <section className="hero-image"></section>
 
       <section className="volunteer-schedule">
-        <h2>Open Volunteer Opportunities</h2>
+        <h2 className="contact-header">Open Volunteer Opportunities</h2>
       </section>
 
       <section className="schedule">

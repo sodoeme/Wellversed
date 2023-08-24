@@ -40,12 +40,12 @@ function NavBar() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                <Link to="/orgpf">My Profile</Link>
-              </li>
               {/* <li>
-                <Link to="/userpf">My Profile</Link>
+                <Link to="/orgpf">My Profile</Link>
               </li> */}
+              <li>
+                <Link to="/userpf">My Profile</Link>
+              </li>
               <li>
                 <Link to="/schedule">Schedule</Link>
               </li>

@@ -71,7 +71,7 @@
   justify-content: center;
   align-items: center;
   background-color: #fffef3;
-  padding: 10px 50px 40px;
+  padding: 10px 50px 20px;
 }
 
 .Main-section {
@@ -156,9 +156,6 @@ button:hover {
     display: grid;
     grid-template-rows: 1fr, 1fr, 1fr, 1fr;
     /* column-gap: 10px; */
-  }
-
-  .Header {
   }
 
   .Profile-Header {
