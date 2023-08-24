@@ -29,7 +29,7 @@ app.use(
 );
 
 //routes
-app.use("schedule", scheduleRoutes)
+app.use("/schedule", scheduleRoutes)
 
 mongoose.connection.once('open', ()=>{
   console.log('Connected to MongoDB')

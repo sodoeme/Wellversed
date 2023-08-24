@@ -4,11 +4,11 @@ const scheduleController = require('../controller/scheduleController')
 
 
 //return all schedules correlating to volunteer
-router.get('volunteer/:id', scheduleController.getAllSchedules)
+router.get('/volunteer/:id', scheduleController.getAllSchedules) 
 
 
 //return all schedules correlating to organization
-router.get('organization/:id', scheduleController.getSchedule)
+router.get('/organization/:id', scheduleController.getSchedule)
 
 //create schedule
 

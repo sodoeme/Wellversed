@@ -30,7 +30,7 @@ exports.getSchedule = async(req,res)=>{
 }
 
 exports.postSchedule = async (req, res) => {
-    const { timeframe, status, type, course, volunteer, organization } = req.body;
+    const { timeframe, status, type, course, organization } = req.body;
    
     try {
         // Create a new schedule entry using the provided data
@@ -39,7 +39,7 @@ exports.postSchedule = async (req, res) => {
             status,
             type,
             course,
-            volunteer,
+            
             organization
         });
 
