@@ -16,10 +16,10 @@ router.post('/create', scheduleController.postSchedule)
 
 // add volunteer to schedule
 
-router.put('/pickup', scheduleController.pickupVolunteer)
+router.put('/pickup', scheduleController.pickUpVolunteer)
 
 // remove volunteer from schedule
    
 router.put('/drop/:id', scheduleController.dropVolunteer)
 
-module.exports = router
+module.exports = router 

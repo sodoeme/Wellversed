@@ -4,7 +4,7 @@ const Course = require("../models/course")
 const Organization = require("../models/organization")
 
 exports.getAllSchedules = async(req, res)=>{
-    // Get all schedules from DB
+    // Get all schedules from DB 
     let id = req.params.id
     const schedules = await Schedule.find({volunteer: id})
 
