@@ -1,8 +1,14 @@
 import React from 'react';
+
+// components
 import Calendar from '../components/calendar';
 import headshot from '../images/headshot.jpeg';
+
+// css
 import '../css/user.css';
 import '../css/calendar.css';
+
+// icons
 import { FaHeart } from "react-icons/fa";
 import { FaGift } from "react-icons/fa";
 import { FaHouseDamage } from "react-icons/fa";
@@ -13,7 +19,8 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
 import { FaGithubSquare } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-// import { FaCalendarAlt } from "react-icons/fa";
+
+import { Link } from 'react-router-dom';
 
 
 
@@ -122,7 +129,10 @@ const userpf = () => {
                 <br/>
                 <Calendar/>
                
-            <button>Find More Volunteer Opportunities</button>
+
+            {/* <Link to="/volunteerSchedule"> */}
+        <button>Find More Volunteer Opportunities</button>
+      {/* </Link> */}
                 </div>
                 
             </div>

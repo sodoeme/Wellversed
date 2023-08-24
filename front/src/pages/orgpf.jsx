@@ -1,26 +1,40 @@
-import React from 'react';
+// import React from 'react';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+
+// import components
 import Calendar from '../components/calendar';
 import npprofile from '../images/npprofile.jpeg';
+import Registerclassform from '../components/registerclassform';
+
+// import css
 import '../css/user.css';
 import '../css/calendar.css';
-// import { FaHeart } from "react-icons/fa";
+
+// import icons
 import { FaGift } from "react-icons/fa";
-// import { FaHouseDamage } from "react-icons/fa";
-// import { FaSeedling } from "react-icons/fa";
-// import { FaSyringe } from "react-icons/fa";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FaHandHoldingHeart } from "react-icons/fa";
-// import { FaCode } from "react-icons/fa";
-// import { FaGithubSquare } from "react-icons/fa";
-// import { FaHome } from "react-icons/fa";
-// import { FaCalendarAlt } from "react-icons/fa";
 
 
 
 
 
 
-const orgpf = () => {
+
+const Orgpf = () => {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
   return (
     <div className='User-Page'>
 
@@ -79,14 +93,11 @@ The program covers a wide range of topics, including budgeting, saving, investin
             <div className='causes-and-interests'>
                 <h3>Causes</h3>
                 <br/>
-                {/* <p > <FaHeart className='icon'/> Health and Medical</p> 
-                 */}
+                
                 <p> <FaGift className='icon' /> Donation </p> 
                
-                {/* <p><FaHouseDamage className='icon' /> Disaster Relief </p> */}
                 <p><FaHandHoldingHeart className='icon'  /> Community Support </p>
-                {/* <p> <FaSeedling className='icon' /> Urban Agriculture </p> */}
-                {/* <p> <FaSyringe className='icon' /> Healthcare Access </p>  */}
+                
                 <p> <FaMoneyBillWave className='icon' /> Philanthropy </p>
                 
                 
@@ -99,10 +110,7 @@ The program covers a wide range of topics, including budgeting, saving, investin
                 <h3>Interests</h3>
                 
                 <br />
-                {/* <p> <FaCode className='icon'/> Programming</p> 
-                <p> <FaGithubSquare className='icon'/> Github </p> 
-               
-                <p>  <FaHome className='icon'/> Affordable Housing </p> */}
+                
                 <p><FaHandHoldingHeart className='icon'/> Community Support </p>
                 <p> <FaMoneyBillWave className='icon'/> Financial Literacy </p>
 <br />
@@ -118,7 +126,18 @@ The program covers a wide range of topics, including budgeting, saving, investin
                 <br/>
                 <Calendar/>
                
-            <button>Request More Volunteer Opportunities</button>
+                <button onClick={openModal}>Request More Volunteer Opportunities</button>
+
+                {/* Modal */}
+
+        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+          <h2>Volunteer Request Form</h2>
+          {/* Add modal content here */}
+          <Registerclassform />
+
+          <button onClick={closeModal}>Close</button>
+        </Modal>
+
                 </div>
                 
             </div>
@@ -135,4 +154,4 @@ The program covers a wide range of topics, including budgeting, saving, investin
   )
 }
 
-export default orgpf;
+export default Orgpf;

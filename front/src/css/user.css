@@ -109,7 +109,12 @@ button {
     border-radius: 30px;
     border: none;
     cursor: pointer;
+
+    opacity: 1;
+  transition: 0.3s;
 }
+
+button:hover {opacity: 0.8}
 
 .causes-and-interests {
     grid-column-start: 2;
