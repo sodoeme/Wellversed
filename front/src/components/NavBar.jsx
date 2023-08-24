@@ -14,6 +14,7 @@ function NavBar() {
   // State to toggle navbar links
   const [showLinks, setShowLinks] = useState(false);
   //Set up to only show sigin in if not logged in
+  //TALK TO BACKEND TEAM ABOUT SETTING UP TOKENS FOR THIS
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Function to toggle links
@@ -22,14 +23,13 @@ function NavBar() {
   };
 
   return (
-    // Router provides browser history
     <Router>
       <div className="header">
         <nav className="nav">
           <div className="nav-header">
             <h1>
               <Link to="/">WellVer$ed</Link>
-              <FaBars className="icon" onClick={toggleLinks} />
+              <FaBars className="menu-icon" onClick={toggleLinks} />
             </h1>
           </div>
           <div className={`links ${showLinks ? "show" : ""}`} id="links">
@@ -58,16 +58,11 @@ function NavBar() {
               </li>
             </ul>
           </div>
-          {/* <div className="signin-section">
-            <Link to="/signin" className="signin-link">
-              Sign In <FaUserCircle className="signin-icon" />
-            </Link>
-          </div> */}
         </nav>
       </div>
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Adjust paths to created components */}
+        {/* Add Myles' components */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

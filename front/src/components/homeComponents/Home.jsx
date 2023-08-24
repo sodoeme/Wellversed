@@ -1,7 +1,6 @@
 import React from "react";
 import BannerIcon from "./BannerIcon";
 import ResourceCard from "./ResourceCard";
-// import SignUp from "../signUpComponents/SignUp";
 import "./Home.css";
 import { FaCalendar, FaDollarSign, FaUser } from "react-icons/fa";
 
@@ -9,11 +8,6 @@ const HomePage = () => {
   return (
     <>
       <section className="hero">
-        {/* <img
-          calssName="hero-image"
-          src="/photos/heroImg.png"
-          alt="Hero image with money, dollar signs, and a piggy bank"
-        /> */}
         <div className="overlay"></div>
         <div className="content">
           <h1 className="hero-title">WellVer$ed Education</h1>

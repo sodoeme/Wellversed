@@ -32,7 +32,6 @@ input[type="checkbox"] {
   .checkbox-label {
     font-size: 18px;
     padding: 1px 170px 1px;
-    color: rgb(113, 34, 0);
   }
 
   input[type="checkbox"] {
@@ -42,17 +41,15 @@ input[type="checkbox"] {
 
 @media (min-width: 1020px) {
   hr.header-divider {
-    margin: 1px 400px 1px;
+    margin: 1px 280px 1px;
   }
 
   h2.signup-blurb {
-    margin: 1px 440px 1px;
+    margin: 1px 300px 1px;
   }
 
   .checkbox-label {
-    font-size: 18px;
-    padding: 1px 500px 1px;
-    color: rgb(113, 34, 0);
+    padding: 1px 320px 1px;
   }
 
   input[type="checkbox"] {

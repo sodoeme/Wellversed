@@ -1,11 +1,10 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 footer {
-  width: 100% !important;
+  width: 100%vw !important;
   background-color: #e8c65fea;
   color: #962d00ff;
   display: grid;
@@ -19,6 +18,7 @@ footer {
 }
 
 .social-icons li {
+  /* width: 100% !important; */
   display: inline-block;
   padding: 3% 5%;
   margin: 0;
@@ -74,8 +74,9 @@ footer {
   grid-column: 1 / span 2;
 }
 
-.section-title {
+h5.section-title {
   margin: 0;
+  padding: 0;
 }
 
 .section-list {

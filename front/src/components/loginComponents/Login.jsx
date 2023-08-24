@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaUserFriends } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Login.css";
+import TextInput from "../signUpComponents/TextInput";
 
 const Login = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    agree: false,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value, type } = event.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === value,
+    }));
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    if (!formData.username || !formData.password) {
+      alert("Please fill out all required fields.");
+      return;
+    }
+
+    // Add validation to check username and password in database
+    // if (username is not a match || password is not a match) {
+    //   alert("Inccorect username or password. Please try again");
+    //   return;
+    // }
+
+    // If all validations pass, you can proceed with submission
+    // Replace with (log-in pass or tokens? and) link to homepage
+    alert("Logged in successfully!");
+  };
+
   return (
     <div className="main-login">
       <div className="content">
@@ -23,45 +58,26 @@ const Login = () => {
           <FaUserFriends className="login-icon" />
         </div>
 
-        <form action="/user" method="post">
-          <div className="form-group-container">
-            <div className="form-group">
-              <label className="label" htmlFor="username">
-                Username:
-              </label>
-              <input
-                className="input"
-                type="text"
-                id="username"
-                name="userName"
-                required
-                placeholder="Username"
-              />
-            </div>
-          </div>
+        <form onSubmit={handleFormSubmit}>
+          <TextInput
+            id="username"
+            name="username"
+            label="Username"
+            type="text"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleInputChange}
+          />
 
-          <div className="form-group-container">
-            <div className="form-group">
-              <label className="label" htmlFor="password">
-                Password:
-              </label>
-              <input
-                className="input"
-                type="password"
-                id="password"
-                name="password"
-                required
-                placeholder="Password"
-              />
-            </div>
-          </div>
-
-          <div className="form-group-container">
-            <label className="checkbox-label">
-              <input type="checkbox" id="agree" name="agree" className="terms-blurb" required />I
-              agree to the terms and conditions.
-            </label>
-          </div>
+          <TextInput
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
 
           <Link to="/" className="forgot-blurb">
             Forgot your username or password?

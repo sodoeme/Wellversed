@@ -4,10 +4,6 @@
   box-sizing: border-box;
 }
 
-/* .nav-header {
-  text-align: left;
-} */
-
 nav {
   z-index: 2;
   box-shadow: 0 4px 8px #00000061;
@@ -18,14 +14,6 @@ nav {
   border-top: 2px solid rgb(75, 23, 0);
   border-bottom: 2px solid rgb(75, 23, 0);
 }
-
-/* nav h1 {
-  color: #962d00ff;
-  font-size: 2000000%;
-  cursor: pointer;
-  margin: 0;
-  padding-top: 5px;
-} */
 
 nav h1 .icon {
   color: #962d00ff;
@@ -75,8 +63,8 @@ nav ul li a:hover {
   border-radius: 20px;
   padding: 10px;
   width: 130px;
-  margin: 0 auto; /* Add this line to center the element horizontally */
-  display: flex; /* Add this line to center the icon vertically */
+  margin: 0 auto;
+  display: flex;
   align-items: center;
 }
 
@@ -132,7 +120,7 @@ nav ul li a:hover {
 
   nav ul li {
     font-size: 120%;
-    white-space: nowrap; /* Prevents line breaks in links */
+    white-space: nowrap;
   }
 
   .icon {

@@ -6,7 +6,6 @@ const Footer = () => {
   return (
     <div>
       <footer>
-        {/* <!-- Social Media links --> */}
         <section className="footer-section" id="footer-s1">
           <ul className="social-icons">
             <li>
@@ -34,7 +33,6 @@ const Footer = () => {
             </li>
           </ul>
         </section>
-        {/* <!-- Other company info --> */}
         <section className="footer-section" id="footer-s2">
           <h5 className="section-title">COMPANY INFO</h5>
           <ul className="section-list">
