@@ -9,7 +9,7 @@ const corsOption = require('./config/corsOptions')
 const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
 const orgRoutes = require('./routes/orgRoutes')
-
+const courseRoutes = require('./routes/courseRoutes')
 
 
 
@@ -34,7 +34,7 @@ app.use(
 
 //routes
 app.use('/organization', orgRoutes)
-
+app.use('/course', courseRoutes)
 mongoose.connection.once('open', ()=>{
   console.log('Connected to MongoDB')
   app.listen(PORT, () => console.log('Server is running on port '+PORT))
