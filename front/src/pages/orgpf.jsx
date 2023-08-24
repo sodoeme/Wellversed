@@ -131,7 +131,7 @@ The program covers a wide range of topics, including budgeting, saving, investin
                 {/* Modal */}
 
         <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
-          <h2>Volunteer Request Form</h2>
+          {/* <h2>Volunteer Request Form</h2> */}
           {/* Add modal content here */}
           <Registerclassform />
 
