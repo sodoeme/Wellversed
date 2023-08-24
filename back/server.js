@@ -11,6 +11,7 @@ const mongoose = require('mongoose')
 const orgRoutes = require('./routes/orgRoutes')
 const courseRoutes = require('./routes/courseRoutes')
 const volunteerRoutes = require("./routes/volunteerRoutes")
+const scheduleRoutes = require("./routes/scheduleRoutes")
 const PORT = 3500
 connectDB();
 
@@ -31,6 +32,8 @@ app.use(
 );
 
 //routes 
+//must mount route in server file, impoted at top
+app.use("/schedule", scheduleRoutes)
 //must mount route in server file
 app.use("/volunteer", volunteerRoutes)
 app.use('/organization', orgRoutes)
