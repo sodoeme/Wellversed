@@ -1,16 +1,11 @@
-import Userpf from './pages/userpf';
-import Orgpf from './pages/orgpf';
-// import Schedule from './pages/schedule';
-
+import NavBar from "./components/NavBar";
+// import Footer from "./components/Footer";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      
-      <Userpf />
-      <Orgpf />
-      {/* <Schedule /> */}
-      
+      <NavBar />
     </div>
   );
 }
