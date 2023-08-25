@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import User from './user.css';
+import React, { useState } from "react";
+import User from "./user.css";
 
 const Registerclassform = () => {
+  const [formData, setFormData] = useState({
+    organizationName: "",
+    representativeName: "",
+    representativeEmail: "",
+    course: "",
+    courseDescription: "",
+  });
 
-    const [formData, setFormData] = useState({
-        organizationName: '',
-        representativeName: '',
-        representativeEmail: '',
-        course: '',
-        courseDescription: ''
-      });
-    
-      const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-          ...formData,
-          [name]: value,
-        });
-      };
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        // Perform form submission or validation here
-        console.log('Form submitted:', formData);
-      };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Perform form submission or validation here
+    console.log("Form submitted:", formData);
+  };
 
   return (
     <div>
       {/* <h2>Registration Form</h2> */}
-      <form className='req-form' onSubmit={handleSubmit}>
+      <form className="req-form" onSubmit={handleSubmit}>
         <div>
-          <label className='req-label'>Name of Organization:</label>
-          <input 
-            className='req-input'
+          <label className="req-label">Name of Organization:</label>
+          <input
+            className="req-input"
             type="text"
             name="organizationName"
             value={formData.organizationName}
@@ -40,9 +39,9 @@ const Registerclassform = () => {
           />
         </div>
         <div>
-          <label className='req-label'>Representative Name:</label>
-          <input 
-            className='req-input'
+          <label className="req-label">Representative Name:</label>
+          <input
+            className="req-input"
             type="text"
             name="representativeName"
             value={formData.representativeName}
@@ -50,9 +49,9 @@ const Registerclassform = () => {
           />
         </div>
         <div>
-          <label className='req-label'>Representative Email:</label>
+          <label className="req-label">Representative Email:</label>
           <input
-            className='req-input'
+            className="req-input"
             type="email"
             name="representativeEmail"
             value={formData.email}
@@ -60,9 +59,9 @@ const Registerclassform = () => {
           />
         </div>
         <div>
-          <label className='req-label'>Name of Course:</label>
+          <label className="req-label">Name of Course:</label>
           <input
-            className='req-input'
+            className="req-input"
             type="text"
             name="course"
             value={formData.course}
@@ -70,19 +69,21 @@ const Registerclassform = () => {
           />
         </div>
         <div>
-          <label className='req-label'>Course Description:</label>
+          <label className="req-label">Course Description:</label>
           <input
-            className='req-input'
+            className="req-input"
             type="text"
             name="courseDescription"
             value={formData.courseDescription}
             onChange={handleChange}
           />
         </div>
-        <button className='req-btn' type="submit">Register</button>
+        <button className="req-btn" type="submit">
+          Register
+        </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
 export default Registerclassform;

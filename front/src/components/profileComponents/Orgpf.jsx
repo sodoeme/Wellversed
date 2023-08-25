@@ -121,19 +121,20 @@ const Orgpf = () => {
 
         {/* Modal */}
 
-        <Modal 
-        isOpen={isModalOpen} 
-        onRequestClose={closeModal}  
-        style={{
-          content: {
-            width: "700px",
-            maxHeight: "70%",
-            margin: "auto",
-          },
-        }}>
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          style={{
+            content: {
+              width: "700px",
+              maxHeight: "70%",
+              margin: "auto",
+            },
+          }}
+        >
           <h2>Volunteer Request Form</h2>
-          <br/>
-          <br/>
+          <br />
+          <br />
           {/* Add modal content here */}
           <Registerclassform />
 
