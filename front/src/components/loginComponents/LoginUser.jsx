@@ -8,15 +8,14 @@ const LoginUser = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    agree: false,
   });
 
   const handleInputChange = (event) => {
-    const { name, value, type } = event.target;
+    const { name, value } = event.target;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === value,
+      [name]: value,
     }));
   };
 
@@ -35,7 +34,7 @@ const LoginUser = () => {
     // }
 
     // If all validations pass, you can proceed with submission
-    // Replace with (log-in pass or tokens? and) link to homepage
+    // Replace with (log-in pass or tokens?
     alert("Logged in successfully!");
     window.location.href = "/userpf";
   };

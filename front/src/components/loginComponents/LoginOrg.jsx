@@ -8,15 +8,14 @@ const LoginOrg = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    agree: false,
   });
 
   const handleInputChange = (event) => {
-    const { name, value, type } = event.target;
+    const { name, value } = event.target;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === value,
+      [name]: value,
     }));
   };
 
