@@ -2,15 +2,14 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const volunteerSchema = new Schema({
-  firstname: { type: String, required: true },
-  lastname: { type: String, required: true },
+  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  job_title: { type: String, required: true },
+  job_title: { type: String,  },
   areas_of_exp: { type: [String] },
   bio: String,
   pic: String,
-  status: { type: Boolean, default: false },
+  status: { type: Boolean, default: true },
 });
 
 volunteerSchema.pre("save", function (next) {

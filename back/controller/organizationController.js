@@ -62,10 +62,15 @@ exports.logOut =  async (req, res) => {
 //notify organization of duplicate organizationname
 exports.signUp = async (req, res) => {
     let organization = new Organization(req.body);
+    organization.name = req.body.organization
+    organization.ref.name= organization.ref_name
+    organization.ref.phone= organization.ref_phone
+
+    console.log(organization)
 
         // confirm personal data
-    if (!organization.name || !organization.address  || !organization.email || !organization.password) {
-        return res.status(400).json({ message: "All field are required" })
+    if (!organization.name  || !organization.email || !organization.password) {
+        return res.status(400).json({ message: "All fields are required" })
     }
         organization.email = organization.email.toLowerCase()
      

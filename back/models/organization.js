@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const organizationSchema = new Schema({
   name: { type: String, required: true },
-  address: { type: String, required: true },
   ref: { 
     name: String,
     phone: String

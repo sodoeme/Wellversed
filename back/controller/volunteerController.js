@@ -82,8 +82,8 @@ exports.login = async (req, res) => {
 
 exports.signUp = async (req, res) => {
     let volunteer = new Volunteer(req.body);
-
-    if (!volunteer.firstname || !volunteer.lastname  || !volunteer.password || !volunteer.email) {
+console.log(volunteer)
+    if (!volunteer.name   || !volunteer.password || !volunteer.email) {
         return res.status(400).json({ message: "All field are required" })
     }
 
@@ -98,7 +98,7 @@ exports.signUp = async (req, res) => {
     const isSaved = await volunteer.save()
 
     if(isSaved){
-        res.status(201).json({ message: `The volunteer  ${volunteer.firstname + " "+ volunteer.lastname} has been created successfully` })
+        res.status(201).json({ message: `The volunteer  ${volunteer.name} has been created successfully` })
     }
     else{
         res.status(400).json({ message: 'Invalid data recived' })

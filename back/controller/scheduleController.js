@@ -3,6 +3,20 @@ const Volunteer = require("../models/volunteer")
 const Course = require("../models/course")
 const Organization = require("../models/organization")
 
+
+exports.get = async(req, res)=>{
+    // Get all schedules from DB 
+    const schedules = await Schedule.find()
+
+    // If no schedules
+    if (!schedules.length) {
+        return res.status(400).json({ message: "No schedules found" })
+    }
+
+    res.json(schedules)
+}
+
+
 exports.getAllSchedules = async(req, res)=>{
     // Get all schedules from DB 
     let id = req.params.id
