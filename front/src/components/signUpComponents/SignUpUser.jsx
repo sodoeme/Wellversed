@@ -7,7 +7,6 @@ const SignUpUser = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    userName: "",
     password: "",
     confirmPassword: "",
     agreeTerms: false,
@@ -24,7 +23,6 @@ const SignUpUser = () => {
     if (
       !formData.name ||
       !formData.email ||
-      !formData.userName ||
       !formData.password ||
       !formData.confirmPassword ||
       !formData.agreeTerms
@@ -43,21 +41,70 @@ const SignUpUser = () => {
       return;
     }
 
-    // If all validations pass, you can proceed with form submission
-    alert("You have successfully created your account!");
-    window.location.href = "/loginuser";
-    // Add user to database (ASK BACKEND TEAM)
+    fetch("http://localhost:3500/volunteer/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from the server
+        if (data.message) {
+          // Show a success message to the user
+          alert(data.message);
+          // Redirect or perform other actions after successful sign-up
+          window.location.href = "/loginuser";
+        } else {
+          // Show an error message to the user
+          alert("Sign-up failed. Please check your input.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching: ", error);
+      });
 
     // Reset the form fields
     setFormData({
       name: "",
       email: "",
-      userName: "",
       password: "",
       confirmPassword: "",
       agreeTerms: false,
     });
+    // // If all validations pass, you can proceed with form submission
+    // alert("You have successfully created your organization's account!");
+    // window.location.href = "/loginorg";
+    // // Add user to database (ASK BACKEND TEAM)
+    // // Navigate user to homepage
+
+    // // Reset the form fields
+    // setFormData({
+    //   email: "",
+    //   agreeNewsletter: false,
+    //   organization: "",
+    //   userName: "",
+    //   password: "",
+    //   confirmPassword: "",
+    //   agreeTerms: false,
+    // });
   };
+
+  //   // If all validations pass, you can proceed with form submission
+  //   alert("You have successfully created your account!");
+  //   window.location.href = "/loginuser";
+  //   // Add user to database (ASK BACKEND TEAM)
+
+  //   // Reset the form fields
+  //   setFormData({
+  //     name: "",
+  //     email: "",
+  //     password: "",
+  //     confirmPassword: "",
+  //     agreeTerms: false,
+  //   });
+  // };
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -108,16 +155,6 @@ const SignUpUser = () => {
           name="agreeNewsletter"
           label="Receive our weekly newsletter via email"
           checked={formData.agreeNewsletter}
-          onChange={handleInputChange}
-        />
-
-        <TextInput
-          id="username"
-          name="userName"
-          label="Username"
-          type="text"
-          placeholder="Username"
-          value={formData.userName}
           onChange={handleInputChange}
         />
 

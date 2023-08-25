@@ -8,11 +8,17 @@ const SignUpOrg = () => {
     email: "",
     agreeNewsletter: false,
     organization: "",
-    userName: "",
+    ref_name: "",
+    ref_phone: "",
     password: "",
     confirmPassword: "",
     agreeTerms: false,
   });
+
+  const isValidPhone = (phone) => {
+    const phonePattern = /^\(\d{3}\)\s\d{3}-\d{4}$/;
+    return phonePattern.test(phone);
+  };
 
   const isValidEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,7 +31,8 @@ const SignUpOrg = () => {
     if (
       !formData.email ||
       !formData.organization ||
-      !formData.userName ||
+      !formData.ref_name ||
+      !formData.ref_phone ||
       !formData.password ||
       !formData.confirmPassword ||
       !formData.agreeTerms
@@ -39,27 +46,67 @@ const SignUpOrg = () => {
       return;
     }
 
+    if (!isValidPhone(formData.ref_phone)) {
+      alert("Please enter a valid phone number.");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
 
-    // If all validations pass, you can proceed with form submission
-    alert("You have successfully created your organization's account!");
-    window.location.href = "/loginorg";
-    // Add user to database (ASK BACKEND TEAM)
-    // Navigate user to homepage
+    fetch("http://localhost:3500/organization/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from the server
+        if (data.message) {
+          // Show a success message to the user
+          alert(data.message);
+          // Redirect or perform other actions after successful sign-up
+          window.location.href = "/loginorg";
+        } else {
+          // Show an error message to the user
+          alert("Sign-up failed. Please check your input.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching: ", error);
+      });
 
     // Reset the form fields
     setFormData({
       email: "",
       agreeNewsletter: false,
       organization: "",
-      userName: "",
+      ref_phone: "",
+      ref_name: "",
       password: "",
       confirmPassword: "",
       agreeTerms: false,
     });
+    // // If all validations pass, you can proceed with form submission
+    // alert("You have successfully created your organization's account!");
+    // window.location.href = "/loginorg";
+    // // Add user to database (ASK BACKEND TEAM)
+    // // Navigate user to homepage
+
+    // // Reset the form fields
+    // setFormData({
+    //   email: "",
+    //   agreeNewsletter: false,
+    //   organization: "",
+    //   userName: "",
+    //   password: "",
+    //   confirmPassword: "",
+    //   agreeTerms: false,
+    // });
   };
 
   const handleInputChange = (event) => {
@@ -115,12 +162,32 @@ const SignUpOrg = () => {
         />
 
         <TextInput
-          id="username"
-          name="userName"
-          label="Username"
+          id="ref_name"
+          name="ref_name"
+          label="Name"
           type="text"
-          placeholder="Username"
-          value={formData.userName}
+          placeholder="Reference name"
+          value={formData.ref_name}
+          onChange={handleInputChange}
+        />
+
+        <TextInput
+          id="ref_phone"
+          name="ref_phone"
+          label="Phone"
+          type="tel"
+          placeholder="(000) 000-0000"
+          value={formData.ref_phone}
+          onChange={handleInputChange}
+        />
+
+        <TextInput
+          id="organization"
+          name="organization"
+          label="Organization"
+          type="text"
+          placeholder="Organization"
+          value={formData.organization}
           onChange={handleInputChange}
         />
 
