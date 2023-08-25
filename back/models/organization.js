@@ -8,7 +8,7 @@ const organizationSchema = new Schema({
     name: String,
     phone: String
   },
-  type: { type: String, required: true },
+  type: { type: String },
   email: { type: String, required: true },
   password: { type: String, required: true },
 

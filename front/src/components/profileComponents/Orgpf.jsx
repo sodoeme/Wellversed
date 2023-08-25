@@ -72,7 +72,7 @@ const Orgpf = () => {
         <br />
 
         <div className="causes-and-interests">
-          <h3>Causes</h3>
+          <h3>Our Causes</h3>
           <br />
 
           <p>
@@ -95,7 +95,7 @@ const Orgpf = () => {
           <br />
 
           <br />
-          <h3>Interests</h3>
+          <h3>Our Interests</h3>
 
           <br />
 
@@ -121,12 +121,23 @@ const Orgpf = () => {
 
         {/* Modal */}
 
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+        <Modal 
+        isOpen={isModalOpen} 
+        onRequestClose={closeModal}  
+        style={{
+          content: {
+            width: "700px",
+            maxHeight: "70%",
+            margin: "auto",
+          },
+        }}>
           <h2>Volunteer Request Form</h2>
+          <br/>
+          <br/>
           {/* Add modal content here */}
           <Registerclassform />
 
-          <button onClick={closeModal}>Close</button>
+          {/* <button onClick={closeModal}>Close</button> */}
         </Modal>
       </div>
     </div>

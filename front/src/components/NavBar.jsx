@@ -6,8 +6,10 @@ import { FaUserCircle } from "react-icons/fa";
 import "./NavBar.css";
 import Home from "./homeComponents/Home";
 import Contact from "./contactComponents/Contact";
-import Login from "./loginComponents/Login";
-import SignUp from "./signUpComponents/SignUp";
+import LoginOrg from "./loginComponents/LoginOrg";
+import LoginUser from "./loginComponents/LoginUser";
+import SignUpOrg from "./signUpComponents/SignUpOrg";
+import SignUpUser from "./signUpComponents/SignUpUser";
 import Schedule from "./scheduleComponents/schedule";
 import Orgpf from "./profileComponents/Orgpf";
 import Userpf from "./profileComponents/Userpf";
@@ -40,12 +42,12 @@ function NavBar() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              {/* <li>
-                <Link to="/orgpf">My Profile</Link>
-              </li> */}
               <li>
-                <Link to="/userpf">My Profile</Link>
+                <Link to="/orgpf">My Profile</Link>
               </li>
+              {/* <li>
+                <Link to="/userpf">My Profile</Link>
+              </li> */}
               <li>
                 <Link to="/schedule">Schedule</Link>
               </li>
@@ -55,7 +57,8 @@ function NavBar() {
               <li>
                 {!isLoggedIn && (
                   <div className="signin-section">
-                    <Link to="/signin" className="signin-link">
+                    <Link to="/loginorg" className="signin-link">
+                      {/* <Link to="/loginuser" className="signin-link"> */}
                       Sign In
                       <FaUserCircle className="signin-icon" />
                     </Link>
@@ -70,8 +73,10 @@ function NavBar() {
         <Route path="/" element={<Home />} />
         {/* Add Myles' components */}
         <Route path="/contact" element={<Contact />} />
-        <Route path="/signin" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/loginuser" element={<LoginUser />} />
+        <Route path="/loginorg" element={<LoginOrg />} />
+        <Route path="/signupuser" element={<SignUpUser />} />
+        <Route path="/signuporg" element={<SignUpOrg />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/orgpf" element={<Orgpf />} />
         <Route path="/userpf" element={<Userpf />} />

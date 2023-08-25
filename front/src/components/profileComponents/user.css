@@ -10,24 +10,6 @@
   grid-template-rows: 1fr, 1fr;
   column-gap: 10px;
 }
-/* 
-.Header {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  background-color: rgb(236, 168, 41);
-  color: rgb(148, 13, 13);
-} */
-/* 
-.Profile-Header {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  background-color: rgb(148, 13, 13);
-  color: white;
-  padding: 10px;
-  display: flex;
-  justify-content: flex-end;
-} */
 
 .User-info {
   display: flex;
@@ -202,9 +184,6 @@ button:hover {
     /* column-gap: 10px; */
   }
 
-  .Header {
-  }
-
   .Profile-Header {
     grid-row-start: 2;
     grid-row-end: 3;
@@ -240,3 +219,73 @@ button:hover {
 
   /* Adjustments for mobile view ... */
 }
+
+/* modal styling */
+
+/* .req-input, .req-input:focus {
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 10px;
+  font-size: 18px;
+}
+.req-input {
+  color: rgb(113, 34, 0);
+  background-color: rgba(250, 204, 186, 0.335);
+}
+.req-label {
+  width: 130px;
+  background-color: #e8c65fea;
+  padding: 0px 10px;
+  color: rgb(165, 36, 0);
+  font-weight: bold;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.req-form {
+  display: block;
+  margin-top: 0em;
+} */
+
+.req-form {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  margin-top: 0;
+   gap: 10px; /* Add some spacing between fields */
+}
+
+.req-label {
+  min-width: 130px; /* Set a minimum width for labels */
+  background-color: #e8c65fea;
+  padding: 10px;
+  color: rgb(165, 36, 0);
+  font-weight: bold;
+  border: solid;
+}
+
+.req-input {
+  border: solid;
+  padding: 10px;
+  font-size: 18px;
+  color: rgb(113, 34, 0);
+  background-color: rgba(250, 204, 186, 0.335);
+  width: 50%; /* Take full width of the container */
+}
+
+.req-btn {
+  padding: 15px;
+  background: rgb(148, 13, 13);
+  color: white;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+
+  opacity: 1;
+  transition: 0.3s;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
