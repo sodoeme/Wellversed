@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken')
 // login functionality
 //notify organization of incorrect credential
 exports.login = async (req, res) => {
-    let {email, password} = req.body
-
+    let {email , password} = req.body
+      email = req.body.username
 
     if (!email || !password) {
         return res.status(400).json({ message: 'All fields are required' })
@@ -30,7 +30,8 @@ exports.login = async (req, res) => {
 
     const accessToken = jwt.sign(
         {
-            "OrganizationInfo": {
+            "UserInfo": {
+                "name": exists.name,
                 "email": exists.email,
                 "roles":[ "organization"]
             }
@@ -106,10 +107,9 @@ exports.getAllOrganizations = async(req, res) =>{
 
 exports.getOrganization = async (req, res) => {
     // Get a organization from DB
-    let id = req.params.id
-    console.log(id)
-    const organization = await Organization.findById(id)
-
+    const {email} = req.params
+    const organization = await Organization.find({email})
+console.log(req.params)
 
     // If no organization
     if (!organization) {

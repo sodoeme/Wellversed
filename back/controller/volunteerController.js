@@ -39,7 +39,7 @@ exports.getVolunteer = async (req, res) =>{
 exports.login = async (req, res) => {
     // here we store email and password from form
     let {email, password} = req.body
-
+        email = req.body.username
     // here we make sure they input user and pass
     if(!email || !password){
         return res.status(400).json({ message: 'All fields are required' })
@@ -63,7 +63,8 @@ exports.login = async (req, res) => {
 
     const accessToken = jwt.sign(
         {
-            "VolunteerInfo": {
+            "UserInfo": {
+                "name": exists.name,
                 "email": exists.email,
                 "roles":[ "volunteer"]
             }
@@ -81,7 +82,7 @@ exports.login = async (req, res) => {
 }
 
 exports.signUp = async (req, res) => {
-    let volunteer = new Volunteer(req.body);
+    let volunteer = new Volunteer(req.body); 
 console.log(volunteer)
     if (!volunteer.name   || !volunteer.password || !volunteer.email) {
         return res.status(400).json({ message: "All field are required" })

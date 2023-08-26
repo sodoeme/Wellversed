@@ -7,7 +7,7 @@ const organizationController = require('../controller/organizationController')
 router.get('/', organizationController.getAllOrganizations)
 
 //get organization
-router.get("/organization/:id", organizationController.getOrganization)
+router.get("/organization/:email", organizationController.getOrganization)
 
 router.post("/login", organizationController.login)
 
