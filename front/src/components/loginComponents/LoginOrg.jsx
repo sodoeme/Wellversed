@@ -3,7 +3,6 @@ import { FaUserFriends } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import TextInput from "../signUpComponents/TextInput";
-
 const LoginOrg = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -35,8 +34,38 @@ const LoginOrg = () => {
 
     // If all validations pass, you can proceed with submission
     // Replace with (log-in pass or tokens? and) link to homepage
-    alert("Logged in successfully!");
-    window.location.href = "/orgpf";
+
+    fetch("http://localhost:3500/organization/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+        console.log("Response Status:", status);
+        console.log("Response Data:", data);
+        if (status != 200) {
+          alert(data.message);
+          return;
+        }
+
+        // Handle the response from the server
+        console.log(data);
+        localStorage.setItem("token", data);
+        alert("Successful Sign in!");
+        window.location.href = "/orgpf";
+      })
+      .catch((error) => {
+        console.error("Error fetching: ", error);
+      });
   };
 
   return (

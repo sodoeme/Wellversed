@@ -27,16 +27,37 @@ const LoginUser = () => {
       return;
     }
 
-    // Add validation to check username and password in database
-    // if (username is not a match || password is not a match) {
-    //   alert("Inccorect username or password. Please try again");
-    //   return;
-    // }
+    fetch("http://localhost:3500/volunteer/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+        console.log("Response Status:", status);
+        console.log("Response Data:", data);
+        if (status != 200) {
+          alert(data.message);
+          return;
+        }
 
-    // If all validations pass, you can proceed with submission
-    // Replace with (log-in pass or tokens?
-    alert("Logged in successfully!");
-    window.location.href = "/userpf";
+        // Handle the response from the server
+        console.log(data);
+        localStorage.setItem("token", data);
+        alert("Successful Sign in!");
+        window.location.href = "/userpf";
+      })
+      .catch((error) => {
+        console.error("Error fetching: ", error);
+      });
   };
 
   return (

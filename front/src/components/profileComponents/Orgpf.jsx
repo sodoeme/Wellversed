@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // import components
 
@@ -10,15 +10,46 @@ import { FaGift } from "react-icons/fa";
 import { FaMoneyBillWave } from "react-icons/fa";
 import { FaHandHoldingHeart } from "react-icons/fa";
 import Courselist from "./courselist";
+import useAuth from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 const Orgpf = () => {
+  const data = useAuth();
+  const [org, setOrg] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:3500/organization/organization/${data.email}`, {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+        console.log("Response Status:", status);
+        console.log(data[0]);
+        if (status != 200) {
+          alert(data.message);
+          return;
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching: ", error);
+      });
+  }, [data]);
 
   return (
-
     // user info section
     <div className="User-Page">
       <div className="User-info">
-        <img src="/photos/npprofile.jpeg" alt="user profile pic" className="profile-image"></img>
+        <img
+          src="/photos/npprofile.jpeg"
+          alt="user profile pic"
+          className="profile-image"
+        ></img>
         <br />
         <h3>Share Charlotte</h3>
         <p>Non-Profit Organization</p>
@@ -39,15 +70,18 @@ const Orgpf = () => {
 
           <div className="about-info">
             <p class="about-info-text">
-              Share Charlotte is a dynamic financial literacy program aimed at empowering
-              individuals with essential money management skills. Through a combination of
-              workshops, resources, and community engagement, Share Charlotte equips participants
-              with the knowledge and tools necessary to make informed financial decisions. The
-              program covers a wide range of topics, including budgeting, saving, investing, debt
-              management, and retirement planning. It fosters practical skills that help individuals
-              navigate real-world financial challenges with confidence. By offering accessible and
-              interactive educational modules, Share Charlotte strives to bridge the gap in
-              financial knowledge, promoting financial independence and stability.
+              Share Charlotte is a dynamic financial literacy program aimed at
+              empowering individuals with essential money management skills.
+              Through a combination of workshops, resources, and community
+              engagement, Share Charlotte equips participants with the knowledge
+              and tools necessary to make informed financial decisions. The
+              program covers a wide range of topics, including budgeting,
+              saving, investing, debt management, and retirement planning. It
+              fosters practical skills that help individuals navigate real-world
+              financial challenges with confidence. By offering accessible and
+              interactive educational modules, Share Charlotte strives to bridge
+              the gap in financial knowledge, promoting financial independence
+              and stability.
             </p>
           </div>
         </div>
@@ -93,7 +127,7 @@ const Orgpf = () => {
         </div>
       </div>
 
-{/* course section of profile */}
+      {/* course section of profile */}
 
       <div className="calendar">
         <Courselist />

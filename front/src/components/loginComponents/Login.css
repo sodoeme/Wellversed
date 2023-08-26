@@ -23,8 +23,6 @@ h2.signin-blurb {
   color: #c1a03eea;
 }
 
-<<<<<<< HEAD
-=======
 .account-header {
   color: #c1a03eea;
   font-weight: normal;
@@ -34,7 +32,6 @@ h2.signin-blurb {
   margin-bottom: 5px;
 }
 
->>>>>>> aubreyUpdated
 .signup-link {
   color: #7d6827ea;
 }
@@ -63,13 +60,10 @@ h2.signin-blurb {
     margin: 1px 170px 1px;
   }
 
-<<<<<<< HEAD
-=======
   .account-header {
     font-size: 40px;
   }
 
->>>>>>> aubreyUpdated
   .terms-blurb {
     font-size: 18px;
     margin: 10px 8px 10px;
@@ -87,13 +81,10 @@ h2.signin-blurb {
 }
 
 @media (min-width: 1020px) {
-<<<<<<< HEAD
-=======
   .account-header {
     font-size: 35px;
   }
 
->>>>>>> aubreyUpdated
   .icon {
     font-size: 10px;
     color: #dd9b30;

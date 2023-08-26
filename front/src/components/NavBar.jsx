@@ -14,13 +14,52 @@ import Schedule from "./scheduleComponents/schedule";
 import Orgpf from "./profileComponents/Orgpf";
 import Userpf from "./profileComponents/Userpf";
 import Footer from "./Footer";
+import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
 
 function NavBar() {
+  const [profLink, setProfLink] = useState("");
   // State to toggle navbar links
   const [showLinks, setShowLinks] = useState(false);
   //Set up to only show sigin in if not logged in
   //TALK TO BACKEND TEAM ABOUT SETTING UP TOKENS FOR THIS
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setLogSign] = useState();
+  const status = useAuth();
+
+  useEffect(() => {
+    //console.log(isLoggedIn)
+    if (status.roles.length > 0) {
+      setLogSign(
+        <div className="signout-section">
+          <button className="signout-button" onClick={signOut}>
+            Sign Out
+            {/* Additional components or icons */}
+          </button>
+        </div>
+      );
+
+      if (status.roles[0] == "organization") {
+        setProfLink(<Link to="/orgpf">My Profile</Link>);
+      } else {
+        setProfLink(<Link to="/userpf">My Profile</Link>);
+      }
+    } else {
+      setLogSign(
+        <div className="signin-section">
+          <Link to="/loginorg" className="signin-link">
+            {/* <Link to="/loginuser" className="signin-link"> */}
+            Sign In
+            <FaUserCircle className="signin-icon" />
+          </Link>
+        </div>
+      );
+    }
+  }, [status]);
+
+  const signOut = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  };
 
   // Function to toggle links
   const toggleLinks = () => {
@@ -43,28 +82,16 @@ function NavBar() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/orgpf">My Profile</Link>
+                {profLink} 
               </li>
-              {/* <li>
-                <Link to="/userpf">My Profile</Link>
-              </li> */}
+
               <li>
                 <Link to="/schedule">Schedule</Link>
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
-              <li>
-                {!isLoggedIn && (
-                  <div className="signin-section">
-                    <Link to="/loginorg" className="signin-link">
-                      {/* <Link to="/loginuser" className="signin-link"> */}
-                      Sign In
-                      <FaUserCircle className="signin-icon" />
-                    </Link>
-                  </div>
-                )}
-              </li>
+              <li>{isLoggedIn}</li>
             </ul>
           </div>
         </nav>
