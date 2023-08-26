@@ -252,7 +252,11 @@ button:hover {
   display: flex;
   flex-direction: column; /* Stack children vertically */
   margin-top: 0;
+<<<<<<< HEAD
    gap: 10px; /* Add some spacing between fields */
+=======
+  gap: 10px; /* Add some spacing between fields */
+>>>>>>> aubreyUpdated
 }
 
 .req-label {
@@ -288,4 +292,7 @@ button:hover {
   align-items: center;
   justify-content: center; */
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> aubreyUpdated

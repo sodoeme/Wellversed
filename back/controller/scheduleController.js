@@ -3,6 +3,7 @@ const Volunteer = require("../models/volunteer")
 const Course = require("../models/course")
 const Organization = require("../models/organization")
 
+<<<<<<< HEAD
 
 exports.get = async(req, res)=>{
     // Get all schedules from DB 
@@ -17,6 +18,8 @@ exports.get = async(req, res)=>{
 }
 
 
+=======
+>>>>>>> aubreyUpdated
 exports.getAllSchedules = async(req, res)=>{
     // Get all schedules from DB 
     let id = req.params.id
