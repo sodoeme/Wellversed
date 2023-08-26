@@ -18,10 +18,41 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
 import { FaGithubSquare } from "react-icons/fa";
 import { FaHome } from "react-icons/fa";
-
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import useAuth from "../../hooks/useAuth";
 const Userpf = () => {
+
+
+  const [vol, setVol] = useState({name:'', email:''});
+  const data = useAuth()
+  useEffect(() => {
+    fetch(`http://localhost:3500/volunteer/volunteer/${data.email}`, {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+        
+        if (status != 200) {
+          alert(data.message);
+          return;
+        }
+        console.log(data[0])
+        setVol(data[0])
+      })
+      .catch((error) => {
+        //console.error("Error fetching: ", error);
+      });
+  }, [data]);
+
+
+
   return (
     <div className="User-Page">
       {/* <div className="Header">
@@ -33,10 +64,10 @@ const Userpf = () => {
       <div className="User-info">
         <img src="/photos/headshot.jpeg" alt="user profile pic" className="profile-image"></img>
         <br />
-        <h3>Jane Doe</h3>
+        <h3>{vol.name}</h3>
         <p>Software Engineer</p>
         <br />
-        <p>Email: jdoe@gmail.com</p>
+        <p>Email: {vol.email}</p>
 
         <br />
 
@@ -67,7 +98,7 @@ const Userpf = () => {
 
       <div className="Main-section">
         <br />
-        <h2 className="prof-name">Hi, Jane!</h2>
+        <h2 className="prof-name">Hi, {vol.name}!</h2>
         <br />
         <br />
 

@@ -11,7 +11,7 @@ const organizationSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
 
-});
+}); 
 
 organizationSchema.pre("save", function (next) {
   let organization = this;

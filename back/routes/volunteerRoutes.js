@@ -12,7 +12,7 @@ const volunteerController = require('../controller/volunteerController');
 router.get('/', volunteerController.getAllVolunteers)
 
 // get single volunteer
-router.get('/volunteer/:id', volunteerController.getVolunteer)
+router.get('/volunteer/:email', volunteerController.getVolunteer)
 
 // returns token volunteer
 router.route('/login').post(volunteerController.login)

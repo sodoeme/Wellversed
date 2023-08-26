@@ -21,8 +21,8 @@ exports.getAllVolunteers = async(req, res) =>{
 
 exports.getVolunteer = async (req, res) =>{
     // Get specific volunteer from DB by ID
-    let id = req.params.id
-    const volunteer = await Volunteer.findById(id)
+    let email = req.params.email
+    const volunteer = await Volunteer.find({email})
 
     // if no vulunteer is found
     if(!volunteer){

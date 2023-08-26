@@ -64,8 +64,8 @@ exports.logOut =  async (req, res) => {
 exports.signUp = async (req, res) => {
     let organization = new Organization(req.body);
     organization.name = req.body.organization
-    organization.ref.name= organization.ref_name
-    organization.ref.phone= organization.ref_phone
+    organization.ref.name = req.body.ref_name;
+    organization.ref.phone = req.body.ref_phone;
 
     console.log(organization)
 
@@ -109,7 +109,6 @@ exports.getOrganization = async (req, res) => {
     // Get a organization from DB
     const {email} = req.params
     const organization = await Organization.find({email})
-console.log(req.params)
 
     // If no organization
     if (!organization) {

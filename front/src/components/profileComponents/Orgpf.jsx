@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 const Orgpf = () => {
   const data = useAuth();
-  const [org, setOrg] = useState();
+  const [org, setOrg] = useState({name:'', email:'', ref:{ name: '', phone: ''} });
 
   useEffect(() => {
     fetch(`http://localhost:3500/organization/organization/${data.email}`, {
@@ -29,15 +29,17 @@ const Orgpf = () => {
       })
       .then((result) => {
         const { status, data } = result;
-        console.log("Response Status:", status);
-        console.log(data[0]);
+        
         if (status != 200) {
           alert(data.message);
           return;
         }
+
+        setOrg(data[0])
+        console.log(org)
       })
       .catch((error) => {
-        console.error("Error fetching: ", error);
+        //console.error("Error fetching: ", error);
       });
   }, [data]);
 
@@ -51,17 +53,15 @@ const Orgpf = () => {
           className="profile-image"
         ></img>
         <br />
-        <h3>Share Charlotte</h3>
+        <h3>{org.name}</h3>
         <p>Non-Profit Organization</p>
         <br />
-        <p>Representative: John Doe</p>
-        <p>Email: jdoe@gmail.com</p>
+        <p>Representative: {org.ref.name}</p>
+        <p>Contact: {org.ref.phone}</p>
 
         <br />
 
-        <div className="volunteer-info">
-          <p>Joined date: 8/1/2020</p>
-        </div>
+      
 
         <br />
 
@@ -91,7 +91,7 @@ const Orgpf = () => {
 
       <div className="Main-section">
         <br />
-        <h2 className="prof-name">Hi, Share Charlotte!</h2>
+        <h2 className="prof-name">Hi, {org.name}</h2>
         <br />
         <br />
 
