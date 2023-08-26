@@ -138,14 +138,7 @@ const Mainschedule = () => {
               <button onClick={handleAddClass}>Add Class</button>
             ) : (
               <div className="signed-up">
-<<<<<<< HEAD
-                <p>
-                  {" "}
-                  {/* <FaCheck className="icon" /> */}
-                </p>
-=======
                 <p> {/* <FaCheck className="icon" /> */}</p>
->>>>>>> aubreyUpdated
                 <h2>You Are Signed Up To Volunteer For: {selectedEvent.title}!</h2>
               </div>
             )}
@@ -156,14 +149,7 @@ const Mainschedule = () => {
               <button onClick={handleDropClass}>Drop Class</button>
             ) : (
               <div className="dropped-class">
-<<<<<<< HEAD
-                <p>
-                  {" "}
-                  {/* <FaTrashAlt className="drop-icon" /> */}
-                </p>
-=======
                 <p> {/* <FaTrashAlt className="drop-icon" /> */}</p>
->>>>>>> aubreyUpdated
                 <h2>You Have Dropped: {selectedEvent.title}!</h2>
               </div>
             )}

@@ -145,7 +145,6 @@ const Userpf = () => {
         <Calendar />
 
         {/* <Link to="/volunteerSchedule"> */}
-<<<<<<< HEAD
         <Link to="/schedule"
         style={{
           textDecoration: 'none',
@@ -160,9 +159,6 @@ const Userpf = () => {
           }}
         >Go To Full Schedule</Link>
         
-=======
-        <button>Find More Volunteer Opportunities</button>
->>>>>>> aubreyUpdated
         {/* </Link> */}
       </div>
     </div>

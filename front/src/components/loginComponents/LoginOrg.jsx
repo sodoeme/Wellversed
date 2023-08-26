@@ -43,7 +43,7 @@ const LoginOrg = () => {
     <div className="main-login">
       <div className="content">
         <div className="headings">
-          <h1 className="contact-header">Log In</h1>
+          <h1 className="contact-header">Organization Log In</h1>
           <div className="border-container">
             <div className="border"></div>
           </div>
@@ -54,6 +54,12 @@ const LoginOrg = () => {
           </Link>
           <Link to="/signupuser" className="signup-link">
             <h2 className="signin-blurb"> Volunteers sign up here</h2>
+          </Link>
+          <Link to="/loginorg" className="signup-link">
+            <h2 className="signin-blurb"> Organizations login here</h2>
+          </Link>
+          <Link to="/loginuser" className="signup-link">
+            <h2 className="signin-blurb"> Volunteers login here</h2>
           </Link>
         </div>
         <div className="img-container">
