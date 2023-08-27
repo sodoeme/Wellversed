@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import User from "./user.css";
+import { useEffect } from "react";
+import DatePicker from 'react-date-picker';
 
-const Registerclassform = () => {
+const Registerclassform = ({org}) => {
+  const [courses, setCourses] = useState([{ name: "", _id: "" }]);
+  const [course, setCourse] = useState({desc:""}); // Initialize course state
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+
+
   const [formData, setFormData] = useState({
-    organizationName: "",
-    representativeName: "",
-    representativeEmail: "",
     course: "",
-    courseDescription: "",
   });
 
   const handleChange = (event) => {
@@ -18,66 +22,121 @@ const Registerclassform = () => {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Perform form submission or validation here
-    console.log("Form submitted:", formData);
+  const handleCourse = (event) => {
+    const selectedCourseId = event.target.value;
+
+    const selectedCourse = courses.find(
+      (course) => course._id === selectedCourseId
+    );
+    setCourse(selectedCourse);
   };
+
+  const handleSubmit = (event) => { 
+    event.preventDefault();
+ //post form
+
+ fetch("http://localhost:3500/schedule/create", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({course: course._id, "timeframe": selectedDate, organization: org._id }),
+})
+  .then((response) => {
+    return response.json().then((data) => ({
+      status: response.status,
+      data: data,
+    }));
+  })
+  .then((result) => {
+    const { status, data } = result;
+    console.log("Response Status:", status);
+    console.log("Response Data:", data);
+    
+
+    // Handle the response from the server
+    console.log(data);
+    window.location.reload()
+  })
+  .catch((error) => {
+    console.error("Error fetching: ", error);
+  });
+  };
+
+
+
+  useEffect(() => {
+    fetch(`http://localhost:3500/course`, {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+
+        if (status != 200) {
+          alert(data.message);
+          return;
+        }
+        setCourses(data);
+      })
+      .catch((error) => {
+        //console.error("Error fetching: ", error);
+      });
+
+
+     
+  }, []);
+
 
   return (
     <div>
       {/* <h2>Registration Form</h2> */}
       <form className="req-form" onSubmit={handleSubmit}>
-        <div>
-          <label className="req-label">Name of Organization:</label>
-          <input
-            className="req-input"
-            type="text"
-            name="organizationName"
-            value={formData.organizationName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className="req-label">Representative Name:</label>
-          <input
-            className="req-input"
-            type="text"
-            name="representativeName"
-            value={formData.representativeName}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label className="req-label">Representative Email:</label>
-          <input
-            className="req-input"
-            type="email"
-            name="representativeEmail"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
+        
+      <div>
+        <label className="req-label">Select Date:</label>
+        <input
+          className="req-input"
+          type="datetime-local"
+          name="selectedDate"
+          value={selectedDate}
+          onChange={(event) => setSelectedDate(event.target.value)}
+        />
+      </div>
+        
         <div>
           <label className="req-label">Name of Course:</label>
-          <input
+          <select
             className="req-input"
-            type="text"
             name="course"
             value={formData.course}
-            onChange={handleChange}
-          />
+            onChange={(event) => {
+              handleChange(event); // Call your existing handleChange function
+              handleCourse(event);
+            }}
+          >
+            <option value="">Select a course</option>
+            {courses.map((course) => (
+              <option key={course._id} value={course._id}>
+                {course.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="req-label">Course Description:</label>
-          <input
-            className="req-input"
-            type="text"
-            name="courseDescription"
-            value={formData.courseDescription}
-            onChange={handleChange}
-          />
         </div>
+        <textarea
+          className="req-input"
+          name="courseDesc"
+          value={course!=undefined ? course.desc : " "}
+          disabled
+        />
         <button className="req-btn" type="submit">
           Register
         </button>

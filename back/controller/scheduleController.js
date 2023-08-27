@@ -21,7 +21,8 @@ exports.getAllSchedules = async(req, res)=>{
     // Get all schedules from DB 
     let id = req.params.id
     const schedules = await Schedule.find({volunteer: id})
-
+    .populate('course')      // Populate the 'course' reference
+    .populate('organization');
     // If no schedules
     if (!schedules.length) {
         return res.status(400).json({ message: "No schedules found" })
@@ -34,8 +35,9 @@ exports.getSchedule = async(req,res)=>{
     // Get a schedule from DB
     let id = req.params.id
     console.log(id)
-    const schedule = await Schedule.find({organization: id})
-
+    const schedule = await Schedule.find({ organization: id })
+    .populate('course')      // Populate the 'course' reference
+    .populate('volunteer');
     //If noschedule
     if (!schedule.length){
         return res.status(400).json({message: "Schedule not found"})
@@ -45,7 +47,7 @@ exports.getSchedule = async(req,res)=>{
 
 exports.postSchedule = async (req, res) => {
     const { timeframe, status, type, course, organization } = req.body;
-   
+   console.log(req.body)
     try {
         // Create a new schedule entry using the provided data
         const newSchedule = new Schedule({

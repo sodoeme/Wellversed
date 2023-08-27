@@ -14,9 +14,18 @@ import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 
 const Orgpf = () => {
-  const data = useAuth();
-  const [org, setOrg] = useState({name:'', email:'', ref:{ name: '', phone: ''} });
-
+  const [data] = useState(useAuth());
+  const [org, setOrg] = useState({
+    name: "",
+    email: "",
+    ref: { name: "", phone: "" },
+  });
+  const [schedule, setSchedule] = useState({
+    date: "",
+    course: { name: "" },
+    status: "",
+    volunteer: { name: " ", email: " " },
+  });
   useEffect(() => {
     fetch(`http://localhost:3500/organization/organization/${data.email}`, {
       method: "GET",
@@ -29,14 +38,36 @@ const Orgpf = () => {
       })
       .then((result) => {
         const { status, data } = result;
-        
-        if (status != 200) {
+
+        if (status !== 200) {
           alert(data.message);
           return;
         }
 
-        setOrg(data[0])
-        console.log(org)
+        setOrg(data[0]);
+        console.log(schedule.course);
+        // Now that setOrg has been called and org state is updated, fetch courses
+        return fetch(
+          `http://localhost:3500/schedule/organization/${data[0]._id}`,
+          {
+            method: "GET",
+          }
+        );
+      })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+
+        if (status !== 200) {
+          console.log("no schedules");
+          return;
+        }
+        setSchedule(data);
       })
       .catch((error) => {
         //console.error("Error fetching: ", error);
@@ -60,8 +91,6 @@ const Orgpf = () => {
         <p>Contact: {org.ref.phone}</p>
 
         <br />
-
-      
 
         <br />
 
@@ -130,7 +159,7 @@ const Orgpf = () => {
       {/* course section of profile */}
 
       <div className="calendar">
-        <Courselist />
+        <Courselist schedule={schedule} org={org} />
       </div>
     </div>
   );

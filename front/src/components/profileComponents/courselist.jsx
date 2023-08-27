@@ -4,13 +4,20 @@ import './courselist.css';
 import Modal from "react-modal";
 import Registerclassform from "./registerclassform";
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
 
 
 
 
-const Courselist = () => {
+const Courselist = ({org}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [schedule, setSchedule] = useState([{
+      date: "",
+      course: { name: "" },
+      status: "",
+      volunteer: { name: " ", email: " " },
+    }]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -20,11 +27,44 @@ const Courselist = () => {
     setIsModalOpen(false);
   };
 
+  function show (){
+    console.log(schedule)
+  
+  }
+useEffect(() => {
+
+  fetch(
+    `http://localhost:3500/schedule/organization/${org._id}`,
+    {
+      method: "GET",
+    }
+)
+.then((response) => {
+  return response.json().then((data) => ({
+    status: response.status,
+    data: data,
+  }));
+})
+.then((result) => {
+  const { status, data } = result;
+
+  if (status !== 200) {
+    console.log("no schedules");
+    return;
+  }
+  console.log(data)
+  setSchedule(data);
+})
+.catch((error) => {
+  //console.error("Error fetching: ", error);
+});
+}, [org]);
+
   return (
     <div>
         <div className="table-wrapper">
       
-        <h3 className='course-list-title'>Current Courses</h3>
+        <h3 className='course-list-title' onClick={show}>Current Courses</h3>
         <table className='course-list'>
             <tr>
            <th>Date</th>
@@ -33,33 +73,19 @@ const Courselist = () => {
            <th>Instructor Signed Up</th>
            <th>Instructor Information</th>
            </tr>
-
-           {/*  table data */}
-
-           <tr>
-            <td>8/31/2023</td>
-            <td>8am-4pm</td>
-            <td>Financial Literacy 101</td>
-            <td style={{ color: 'green' }}>Yes</td>
-            <td>Name: Jane Doe; Email:jdoe@gmail.com</td>
-            </tr>
-
-            <tr>
-            <td>9/1/2023</td>
-            <td>12am-5pm</td>
-            <td>Mastering Investing Strategies</td>
-            <td style={{ color: 'red' }}>No</td>
-            <td></td>
-            </tr>
-
-            <tr>
-            <td>9/2/2023</td>
-            <td>8am-12pm</td>
-            <td>Affordable Housing Essentials</td>
-            <td style={{ color: 'green' }}>Yes</td>
-            <td>Name: Jane Doe; Email:jdoe@gmail.com</td>
-            </tr>
-
+           {schedule.map((item) => (
+      <tr key={item._id}>
+        <td>{new Date(item.timeframe).toLocaleDateString()}</td>
+        <td>{new Date(item.timeframe).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+        <td>{item.course.name}</td>
+        <td style={{ color: item.status ? 'green' : 'red' }}>
+          {item.status ? 'Yes' : 'No'}
+        </td>
+        <td>
+          {item.volunteer ? `Name: ${item.volunteer.name}; Email: ${item.volunteer.email}` : ""}
+        </td>
+      </tr>
+    ))}
         </table>
         <br/>
         <div className='courselist-btn-styling'>
@@ -107,7 +133,7 @@ const Courselist = () => {
           <br/>
           <br/>
           {/* Add modal content here */}
-          <Registerclassform />
+          <Registerclassform org={org}/>
 
           {/* <button onClick={closeModal}>Close</button> */}
         </Modal>

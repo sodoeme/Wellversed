@@ -1,8 +1,7 @@
 import React from "react";
 
 // components
-import Calendar from "./calendar";
-
+import Calendar from "./Calendar"
 // css
 import "./user.css";
 import "./calendar.css";
@@ -25,7 +24,7 @@ const Userpf = () => {
 
 
   const [vol, setVol] = useState({name:'', email:''});
-  const data = useAuth()
+  const [data] = useState(useAuth());
   useEffect(() => {
     fetch(`http://localhost:3500/volunteer/volunteer/${data.email}`, {
       method: "GET",
@@ -43,7 +42,6 @@ const Userpf = () => {
           alert(data.message);
           return;
         }
-        console.log(data[0])
         setVol(data[0])
       })
       .catch((error) => {
@@ -173,7 +171,7 @@ const Userpf = () => {
         <h2>Your Schedule</h2>
         <br />
         <br />
-        <Calendar />
+        <Calendar vol={vol} />
 
         {/* <Link to="/volunteerSchedule"> */}
         <Link to="/schedule"
