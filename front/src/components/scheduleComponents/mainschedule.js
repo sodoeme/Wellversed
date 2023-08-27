@@ -75,13 +75,40 @@ const Mainschedule = () => {
   const [isSignedUp, setIsSignedUp] = useState(false);
 
   function handleAddClass() {
-    setIsSignedUp(true);
+    fetch("/schedule/pickup", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        volunteer: volunteer.id, // Replace with the actual volunteer ID
+        scheduleId: schedule.id, // Assuming you have an "id" property in the selectedEvent
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle the response data as needed
+        setIsSignedUp(true); // Update state or UI based on the response
+      })
+      .catch((error) => {
+        console.error("Error adding class:", error);
+      });
   }
 
   const [isDropped, setIsDropped] = useState(false);
 
   function handleDropClass() {
-    setIsDropped(true);
+    fetch(`/schedule/drop/${Schedule.id}`, {
+      method: "PUT",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Handle the response data as needed
+        setIsDropped(true); // Update state or UI based on the response
+      })
+      .catch((error) => {
+        console.error("Error dropping class:", error);
+      });
   }
 
   useEffect(() => {
