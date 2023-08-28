@@ -63,7 +63,7 @@ const Mainschedule = () => {
         console.error("Error adding class:", error);
       });
   }
-
+   
   const [isDropped, setIsDropped] = useState(false);
 
   function handleDropClass() {
