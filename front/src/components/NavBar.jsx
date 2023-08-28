@@ -4,16 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import "./NavBar.css";
-import Home from "./homeComponents/Home";
-import Contact from "./contactComponents/Contact";
-import LoginOrg from "./loginComponents/LoginOrg";
-import LoginUser from "./loginComponents/LoginUser";
-import SignUpOrg from "./signUpComponents/SignUpOrg";
-import SignUpUser from "./signUpComponents/SignUpUser";
-import Schedule from "./scheduleComponents/schedule";
-import Orgpf from "./profileComponents/Orgpf";
-import Userpf from "./profileComponents/Userpf";
-import Footer from "./Footer";
+
 import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
 
@@ -98,21 +89,10 @@ function NavBar() {
           </div>
         </nav>
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Add Myles' components */}
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/loginuser" element={<LoginUser />} />
-        <Route path="/loginorg" element={<LoginOrg />} />
-        <Route path="/signupuser" element={<SignUpUser />} />
-        <Route path="/signuporg" element={<SignUpOrg />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/orgpf" element={<Orgpf />} />
-        <Route path="/userpf" element={<Userpf />} />
-      </Routes>
-      <Footer />
+      
    </>
   );
 }
 // Hello, I am a new comment
 export default NavBar;
+ 
