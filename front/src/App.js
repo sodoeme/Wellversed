@@ -23,6 +23,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route element={<HeaderFooter />}>
+        <Route path="/" element={<Home />} />
+
         <Route path="/contact" element={<Contact />} />
         <Route path="/loginuser" element={<LoginUser />} />
         <Route path="/loginorg" element={<LoginOrg />} />
