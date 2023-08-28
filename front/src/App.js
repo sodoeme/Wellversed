@@ -21,21 +21,21 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route element={<HeaderFooter />}>
-        <Route path="/" element={<Home />} />
+    <Route path="/" element={<Layout />}>
+      <Route element={<HeaderFooter />}>
+      <Route path="/" element={<Home />} />
 
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/loginuser" element={<LoginUser />} />
-        <Route path="/loginorg" element={<LoginOrg />} />
-        <Route path="/signupuser" element={<SignUpUser />} />
-        <Route path="/signuporg" element={<SignUpOrg />} />
-        <Route path="/schedule" element={<Schedule />} />
-        <Route path="/orgpf" element={<Orgpf />} />
-        <Route path="/userpf" element={<Userpf />} />
-        </Route>
+        <Route path="contact" element={<Contact />} />
+        <Route path="loginuser" element={<LoginUser />} />
+        <Route path="loginorg" element={<LoginOrg />} />
+        <Route path="signupuser" element={<SignUpUser />} />
+        <Route path="signuporg" element={<SignUpOrg />} />
+        <Route path="schedule" element={<Schedule />} />
+        <Route path="orgpf" element={<Orgpf />} />
+        <Route path="userpf" element={<Userpf />} />
       </Route>
-    </Routes>
+    </Route>
+  </Routes>
   );
 }
 
