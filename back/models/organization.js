@@ -10,6 +10,8 @@ const organizationSchema = new Schema({
   type: { type: String },
   email: { type: String, required: true },
   password: { type: String, required: true },
+  about: { type: String },
+
 
 }); 
 

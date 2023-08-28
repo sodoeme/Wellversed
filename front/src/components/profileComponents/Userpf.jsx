@@ -23,7 +23,7 @@ import useAuth from "../../hooks/useAuth";
 const Userpf = () => {
 
 
-  const [vol, setVol] = useState({name:'', email:''});
+  const [vol, setVol] = useState({name:'', email:'', about:""});
   const [data] = useState(useAuth());
   useEffect(() => {
     fetch(`http://localhost:3500/volunteer/volunteer/${data.email}`, {
@@ -60,7 +60,7 @@ const Userpf = () => {
 <h2 className="Profile-Header-Text">Your Profile</h2>
 </div> */}
       <div className="User-info">
-        <img src="/photos/headshot.jpeg" alt="user profile pic" className="profile-image"></img>
+        <img src="/photos/vol2.png" alt="user profile pic" className="profile-image"></img>
         <br />
         <h3>{vol.name}</h3>
         <p>Software Engineer</p>
@@ -81,14 +81,7 @@ const Userpf = () => {
 
           <div className="about-info">
             <p class="about-info-text">
-              I'm Jane Doe, a dedicated software engineer and enthusiastic volunteer. By day, I
-              excel in coding, crafting solutions, and embracing tech challenges. By night, I'm
-              passionate about leveraging my skills to make a positive impact. As a volunteer, I'm
-              committed to using software engineering to empower underserved communities and support
-              meaningful causes. From coding for social good to mentoring aspiring developers, I
-              thrive on giving back. Beyond the screen, I'm an adventurer, an aspiring chef, and a
-              tech advocate. Join me in this dual journey of coding innovation and community
-              enrichment.
+              {vol.about}
             </p>
           </div>
         </div>

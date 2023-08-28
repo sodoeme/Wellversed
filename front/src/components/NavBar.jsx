@@ -19,6 +19,8 @@ import { useEffect } from "react";
 
 function NavBar() {
   const [profLink, setProfLink] = useState("");
+  const [schedLink, setSchedLink] = useState("");
+
   // State to toggle navbar links
   const [showLinks, setShowLinks] = useState(false);
   //Set up to only show sigin in if not logged in
@@ -42,6 +44,11 @@ function NavBar() {
         setProfLink(<Link to="/orgpf">My Profile</Link>);
       } else {
         setProfLink(<Link to="/userpf">My Profile</Link>);
+        setSchedLink(
+          <li>
+            <Link to="/schedule">Schedule</Link>
+          </li>
+        );
       }
     } else {
       setLogSign(
@@ -81,13 +88,8 @@ function NavBar() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>
-                {profLink} 
-              </li>
-
-              <li>
-                <Link to="/schedule">Schedule</Link>
-              </li>
+              <li>{profLink}</li>
+              {schedLink}
               <li>
                 <Link to="/contact">Contact</Link>
               </li>

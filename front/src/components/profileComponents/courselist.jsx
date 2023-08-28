@@ -34,7 +34,7 @@ const Courselist = ({org}) => {
 useEffect(() => {
 
   fetch(
-    `http://localhost:3500/schedule/organization/${org._id}`,
+    `http://localhost:3500/schedule/organization/${org?._id}`,
     {
       method: "GET",
     }
@@ -89,18 +89,7 @@ useEffect(() => {
         </table>
         <br/>
         <div className='courselist-btn-styling'>
-        <Link to="/schedule" className='courselist-btn' style={{
-             marginLeft: '60px',
-             textDecoration: 'none',
-             padding: '10px',
-             background: 'rgb(148, 13, 13)',
-             color: 'white',
-             borderRadius: '30px',
-             border: 'none',
-             cursor: 'pointer',
-             width: '30%',
-             textAlign: 'center'
-             }}>View Full Schedule Here</Link>
+        
         <button className='courselist-btn'onClick={openModal} 
         style={{
             marginLeft: '80px',

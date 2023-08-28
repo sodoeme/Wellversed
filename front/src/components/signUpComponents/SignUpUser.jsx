@@ -10,6 +10,7 @@ const SignUpUser = () => {
     password: "",
     confirmPassword: "",
     agreeTerms: false,
+    about:''
   });
 
   const isValidEmail = (email) => {
@@ -124,8 +125,8 @@ const SignUpUser = () => {
           <div className="border"></div>
         </div>
         <h2 className="signup-blurb">
-          To book classes, get involved, receive our newsletter and much more, sign up for a free
-          account
+          To book classes, get involved, receive our newsletter and much more,
+          sign up for a free account
         </h2>
       </div>
 
@@ -149,7 +150,15 @@ const SignUpUser = () => {
           value={formData.email}
           onChange={handleInputChange}
         />
-
+        <TextInput
+          id="about"
+          name="about"
+          label="About"
+          type="text"
+          placeholder="Tell us about yourself"
+          value={formData.about}
+          onChange={handleInputChange}
+        />
         <CheckboxInput
           id="agreeNewsletter"
           name="agreeNewsletter"

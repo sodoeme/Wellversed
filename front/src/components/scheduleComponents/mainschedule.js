@@ -11,6 +11,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "react-modal";
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-date-picker";
+import useAuth from "../../hooks/useAuth";
 
 // icons
 // import { FaCheck } from "react-icons/fa";
@@ -27,45 +28,13 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const events = [
-  {
-    title: "Financial Literacy 101",
-
-    allDay: true,
-    start: new Date(2023, 8, 0),
-    end: new Date(2023, 8, 0),
-    description:
-      "This interactive class empowers participants with essential financial skills. Covering topics like budgeting, saving, investing, and debt management, learners gain practical insights to make informed financial decisions. Engaging discussions, real-world scenarios, and expert insights form the foundation of this course. Navigate personal finances with confidence, build a strong financial future, and achieve goals through actionable strategies. Whether you're new to finance or seeking to refine your skills, this class equips you with the knowledge and tools needed to thrive in a complex financial landscape. Unlock financial freedom and seize control of your economic well-being.",
-  },
-  {
-    title: "Affordable Housing Essentials",
-    start: new Date(2023, 8, 2),
-    end: new Date(2023, 8, 2),
-    description:
-      "Delve into the dynamics of accessible housing in our comprehensive class. Explore housing policies, market trends, and socio-economic factors influencing affordability. Gain insights into government initiatives, urban planning, and innovative solutions that address housing challenges. Through case studies and discussions, understand the significance of stable housing for communities and individuals. Acquire tools to advocate for affordable housing, assess housing options, and navigate housing programs. Whether you're an advocate, policy maker, or seeking affordable housing, this course equips you with the knowledge to promote equitable housing opportunities and make informed decisions. Empower change and contribute to housing accessibility.",
-  },
-  {
-    title: "Mastering Investing Strategies",
-
-    start: new Date(2023, 8, 1),
-    end: new Date(2023, 8, 1),
-    description:
-      "Unveil the art and science of investing in this comprehensive course. Dive into fundamental concepts like stocks, bonds, mutual funds, and diversification. Explore advanced topics including portfolio management, risk assessment, and market analysis. Through hands-on simulations, real-time market insights, and expert guidance, participants develop a solid foundation in investment strategies. Whether you're a novice or experienced investor, learn to identify opportunities, manage risks, and optimize returns. From building personal wealth to achieving financial goals, this class empowers you to navigate the complex world of investments with confidence and make informed decisions. Unlock your potential in the global financial arena.",
-  },
-];
-
 const Mainschedule = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-
-  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "", description: "" });
-  const [allEvents, setAllEvents] = useState(events);
+  const [vol] = useState(useAuth());
+  const [allEvents, setAllEvents] = useState([]);
 
   const [isClosingModal, setIsClosingModal] = useState(false);
-
-  function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent]);
-  }
 
   function handleEventClick(event) {
     setSelectedEvent(event);
@@ -75,20 +44,20 @@ const Mainschedule = () => {
   const [isSignedUp, setIsSignedUp] = useState(false);
 
   function handleAddClass() {
-    fetch("/schedule/pickup", {
+    console.log(vol)
+    fetch("http://localhost:3500/schedule/pickup", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        volunteer: volunteer.id, // Replace with the actual volunteer ID
-        scheduleId: schedule.id, // Assuming you have an "id" property in the selectedEvent
+        volunteer: vol.email, // Replace with the actual volunteer ID
+        scheduleId: selectedEvent.id, // Assuming you have an "id" property in the selectedEvent
       }),
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // Handle the response data as needed
-        setIsSignedUp(true); // Update state or UI based on the response
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error adding class:", error);
@@ -98,13 +67,13 @@ const Mainschedule = () => {
   const [isDropped, setIsDropped] = useState(false);
 
   function handleDropClass() {
-    fetch(`/schedule/drop/${Schedule.id}`, {
+    
+    fetch(`http://localhost:3500/schedule/drop/${selectedEvent.id}`, {
       method: "PUT",
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data); // Handle the response data as needed
-        setIsDropped(true); // Update state or UI based on the response
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Error dropping class:", error);
@@ -112,11 +81,41 @@ const Mainschedule = () => {
   }
 
   useEffect(() => {
-    if (isClosingModal) {
-      // Reload the page when the modal is closed
-      window.location.reload();
-    }
-  }, [isClosingModal]);
+    fetch(`http://localhost:3500/schedule`, {
+      method: "GET",
+    })
+      .then((response) => {
+        return response.json().then((data) => ({
+          status: response.status,
+          data: data,
+        }));
+      })
+      .then((result) => {
+        const { status, data } = result;
+        const filteredEvents = data
+          .filter((event) => {
+            console.log(event)
+            return !event.status || event.volunteer?.email === vol?.email;
+          })
+          .map((event) => ({
+            title: event.course.name,
+            start: new Date(event.timeframe), // Calendar portion of timeframe
+            end: new Date(event.timeframe), // Calendar portion of timeframe
+            time: new Date(event.timeframe).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }), // Clock portion of timeframe
+            description: event.course.desc,
+            org: event.organization.ref.name,
+            id: event._id,
+            status: event.status,
+          }));
+
+        setAllEvents(filteredEvents);
+      });
+  }, []);
+
+
 
   function handleEventClick(event) {
     setSelectedEvent(event);
@@ -156,32 +155,19 @@ const Mainschedule = () => {
         {selectedEvent && (
           <div>
             <h2>{selectedEvent.title}</h2>
-            <p>Start: {selectedEvent.start.toString()}</p>
-            <p>End: {selectedEvent.end.toString()}</p>
+            <p>Organization: {selectedEvent.org}</p>{" "}
+            {/* Display the selectedEvent.org */}
+            <p>Day: {selectedEvent.start.toLocaleDateString()}</p>{" "}
+            {/* Display only the date */}
+            <p>Time: {selectedEvent.time}</p>{" "}
+            {/* Display the selectedEvent.time */}
             <h2>Course Description</h2>
             <p>{selectedEvent.description.toString()}</p>
-
-            {!isSignedUp ? (
-              <button onClick={handleAddClass}>Add Class</button>
-            ) : (
-              <div className="signed-up">
-                <p> {/* <FaCheck className="icon" /> */}</p>
-                <h2>You Are Signed Up To Volunteer For: {selectedEvent.title}!</h2>
-              </div>
-            )}
-
-            <p></p>
-
-            {!isDropped ? (
+            {selectedEvent.status ? (
               <button onClick={handleDropClass}>Drop Class</button>
             ) : (
-              <div className="dropped-class">
-                <p> {/* <FaTrashAlt className="drop-icon" /> */}</p>
-                <h2>You Have Dropped: {selectedEvent.title}!</h2>
-              </div>
+              <button onClick={handleAddClass}>Pickup Class</button>
             )}
-
-            <p></p>
           </div>
         )}
       </Modal>

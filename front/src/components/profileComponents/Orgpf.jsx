@@ -19,6 +19,7 @@ const Orgpf = () => {
     name: "",
     email: "",
     ref: { name: "", phone: "" },
+    about:""
   });
   const [schedule, setSchedule] = useState({
     date: "",
@@ -45,32 +46,6 @@ const Orgpf = () => {
         }
 
         setOrg(data[0]);
-        console.log(schedule.course);
-        // Now that setOrg has been called and org state is updated, fetch courses
-        return fetch(
-          `http://localhost:3500/schedule/organization/${data[0]._id}`,
-          {
-            method: "GET",
-          }
-        );
-      })
-      .then((response) => {
-        return response.json().then((data) => ({
-          status: response.status,
-          data: data,
-        }));
-      })
-      .then((result) => {
-        const { status, data } = result;
-
-        if (status !== 200) {
-          console.log("no schedules");
-          return;
-        }
-        setSchedule(data);
-      })
-      .catch((error) => {
-        //console.error("Error fetching: ", error);
       });
   }, [data]);
 
@@ -79,16 +54,16 @@ const Orgpf = () => {
     <div className="User-Page">
       <div className="User-info">
         <img
-          src="/photos/npprofile.jpeg"
+          src="/photos/company.jpeg"
           alt="user profile pic"
           className="profile-image"
         ></img>
         <br />
-        <h3>{org.name}</h3>
+        <h3>{org?.name}</h3>
         <p>Non-Profit Organization</p>
         <br />
-        <p>Representative: {org.ref.name}</p>
-        <p>Contact: {org.ref.phone}</p>
+        <p>Representative: {org?.ref.name}</p>
+        <p>Contact: {org?.ref.phone}</p>
 
         <br />
 
@@ -99,18 +74,7 @@ const Orgpf = () => {
 
           <div className="about-info">
             <p class="about-info-text">
-              Share Charlotte is a dynamic financial literacy program aimed at
-              empowering individuals with essential money management skills.
-              Through a combination of workshops, resources, and community
-              engagement, Share Charlotte equips participants with the knowledge
-              and tools necessary to make informed financial decisions. The
-              program covers a wide range of topics, including budgeting,
-              saving, investing, debt management, and retirement planning. It
-              fosters practical skills that help individuals navigate real-world
-              financial challenges with confidence. By offering accessible and
-              interactive educational modules, Share Charlotte strives to bridge
-              the gap in financial knowledge, promoting financial independence
-              and stability.
+            {org?.about}
             </p>
           </div>
         </div>
@@ -120,7 +84,7 @@ const Orgpf = () => {
 
       <div className="Main-section">
         <br />
-        <h2 className="prof-name">Hi, {org.name}</h2>
+        <h2 className="prof-name">Hi, {org?.name}</h2>
         <br />
         <br />
 

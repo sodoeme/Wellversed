@@ -7,7 +7,9 @@ const Organization = require("../models/organization")
 exports.get = async(req, res)=>{
     // Get all schedules from DB 
     const schedules = await Schedule.find()
-
+    .populate('course')      // Populate the 'course' reference
+    .populate('organization')
+    .populate('volunteer')
     // If no schedules
     if (!schedules.length) {
         return res.status(400).json({ message: "No schedules found" })
@@ -75,7 +77,9 @@ exports.postSchedule = async (req, res) => {
 
 exports.pickUpVolunteer = async (req, res) => {
     const { volunteer, scheduleId } = req.body;
-
+        console.log(req.body)
+        console.log({volunteer: volunteer, scheduleId: scheduleId})
+        const [vol] = await Volunteer.find({email: volunteer})
     try {
         // Find the schedule by ID
         const schedule = await Schedule.findById(scheduleId);
@@ -86,7 +90,7 @@ exports.pickUpVolunteer = async (req, res) => {
 
         // Update the volunteer variable
 
-        schedule.volunteer = volunteer;
+        schedule.volunteer = vol;
         schedule.status = true;
         // Save the updated schedule
         const updatedSchedule = await schedule.save();
@@ -104,7 +108,8 @@ exports.pickUpVolunteer = async (req, res) => {
 
 exports.dropVolunteer = async (req, res) => {
     const id = req.params.id; // Assuming the id is provided in the request parameters
-
+    console.log(req.params)
+   
     try {
         // Find the schedule by ID
         const schedule = await Schedule.findById(id);

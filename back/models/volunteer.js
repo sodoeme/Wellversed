@@ -7,7 +7,7 @@ const volunteerSchema = new Schema({
   password: { type: String, required: true },
   job_title: { type: String,  },
   areas_of_exp: { type: [String] },
-  bio: String,
+  about: String,
   pic: String,
   status: { type: Boolean, default: true },
 });

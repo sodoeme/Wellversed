@@ -7,7 +7,10 @@ const SignUpOrg = () => {
   const [formData, setFormData] = useState({
     email: "",
     agreeNewsletter: false,
-    organization: "",
+    organizationType: "", // Added organizationType field
+    about: "", // Added about field
+    causes: [], // Added causes field as an array
+    interests: [], // Added interests field as an array
     ref_name: "",
     ref_phone: "",
     password: "",
@@ -181,13 +184,14 @@ const SignUpOrg = () => {
           onChange={handleInputChange}
         />
 
+
         <TextInput
-          id="organization"
-          name="organization"
-          label="Organization"
+          id="about"
+          name="about"
+          label="About"
           type="text"
-          placeholder="Organization"
-          value={formData.organization}
+          placeholder="Tell us about the organization"
+          value={formData.about}
           onChange={handleInputChange}
         />
 

@@ -66,7 +66,7 @@ exports.signUp = async (req, res) => {
     organization.name = req.body.organization
     organization.ref.name = req.body.ref_name;
     organization.ref.phone = req.body.ref_phone;
-
+    
     console.log(organization)
 
         // confirm personal data
@@ -92,7 +92,7 @@ exports.signUp = async (req, res) => {
     }
 
 };
-
+ 
 exports.getAllOrganizations = async(req, res) =>{
     // Get all orgs from DB
     const organizations = await Organization.find()
