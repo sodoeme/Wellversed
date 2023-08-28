@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-
+import useApi from "../../hooks/useApi";
 const Calendar = ({ vol }) => {
+  const api = useApi()
   const [schedule, setSchedule] = useState([
     {
       timeframe: "",
@@ -21,7 +22,7 @@ const Calendar = ({ vol }) => {
   ]);
 
   useEffect(() => {
-    fetch(`http://localhost:3500/schedule/volunteer/${vol._id}`, {
+    fetch(`${api}/schedule/volunteer/${vol._id}`, {
       method: "GET",
     })
       .then((response) => {

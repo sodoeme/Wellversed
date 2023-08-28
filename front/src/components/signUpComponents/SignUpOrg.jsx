@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignUp.css";
 import CheckboxInput from "./CheckboxInput";
 import TextInput from "./TextInput";
-
+import useApi from "../../hooks/useApi";
 const SignUpOrg = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -17,6 +17,8 @@ const SignUpOrg = () => {
     confirmPassword: "",
     agreeTerms: false,
   });
+
+  const api = useApi()
 
   const isValidPhone = (phone) => {
     const phonePattern = /^\(\d{3}\)\s\d{3}-\d{4}$/;
@@ -59,7 +61,7 @@ const SignUpOrg = () => {
       return;
     }
 
-    fetch("http://localhost:3500/organization/signup", {
+    fetch(`${api}/organization/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

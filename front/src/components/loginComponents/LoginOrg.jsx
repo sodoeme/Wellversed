@@ -3,7 +3,9 @@ import { FaUserFriends } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import TextInput from "../signUpComponents/TextInput";
+import useApi from "../../hooks/useApi";
 const LoginOrg = () => {
+  const api = useApi()
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -35,7 +37,7 @@ const LoginOrg = () => {
     // If all validations pass, you can proceed with submission
     // Replace with (log-in pass or tokens? and) link to homepage
 
-    fetch("http://localhost:3500/organization/login", {
+    fetch(`${api}/organization/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

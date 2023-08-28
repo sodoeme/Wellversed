@@ -21,13 +21,15 @@ import { FaHome } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import useApi from "../../hooks/useApi";
 const Userpf = () => {
 
 
   const [vol, setVol] = useState({name:'', email:'', about:""});
   const [data] = useState(useAuth());
+  const api = useApi()
   useEffect(() => {
-    fetch(`http://localhost:3500/volunteer/volunteer/${data.email}`, {
+    fetch(`${api}/volunteer/volunteer/${data.email}`, {
       method: "GET",
     })
       .then((response) => {

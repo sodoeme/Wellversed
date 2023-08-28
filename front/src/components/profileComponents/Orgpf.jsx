@@ -12,9 +12,10 @@ import { FaHandHoldingHeart } from "react-icons/fa";
 import Courselist from "./courselist";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
-
+import useApi from "../../hooks/useApi";
 const Orgpf = () => {
   const [data] = useState(useAuth());
+  const api = useApi()
   const [org, setOrg] = useState({
     name: "",
     email: "",
@@ -28,7 +29,7 @@ const Orgpf = () => {
     volunteer: { name: " ", email: " " },
   });
   useEffect(() => {
-    fetch(`http://localhost:3500/organization/organization/${data.email}`, {
+    fetch(`${api}/organization/organization/${data.email}`, {
       method: "GET",
     })
       .then((response) => {

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./SignUp.css";
 import CheckboxInput from "./CheckboxInput";
 import TextInput from "./TextInput";
-
+import useAuth from "../../hooks/useAuth";
+import useApi from "../../hooks/useApi";
 const SignUpUser = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -12,6 +13,8 @@ const SignUpUser = () => {
     agreeTerms: false,
     about:''
   });
+
+  const api = useApi()
 
   const isValidEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -42,7 +45,7 @@ const SignUpUser = () => {
       return;
     }
 
-    fetch("http://localhost:3500/volunteer/signup", {
+    fetch(`${api}/volunteer/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

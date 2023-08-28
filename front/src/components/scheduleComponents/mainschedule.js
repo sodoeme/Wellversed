@@ -12,7 +12,7 @@ import Modal from "react-modal";
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-date-picker";
 import useAuth from "../../hooks/useAuth";
-
+import useApi from "../../hooks/useApi";
 // icons
 // import { FaCheck } from "react-icons/fa";
 // import { FaTrashAlt } from "react-icons/fa";
@@ -33,7 +33,7 @@ const Mainschedule = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [vol] = useState(useAuth());
   const [allEvents, setAllEvents] = useState([]);
-
+  const api = useApi()
   const [isClosingModal, setIsClosingModal] = useState(false);
 
   function handleEventClick(event) {
@@ -45,7 +45,7 @@ const Mainschedule = () => {
 
   function handleAddClass() {
     console.log(vol)
-    fetch("http://localhost:3500/schedule/pickup", {
+    fetch(`${api}/schedule/pickup`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const Mainschedule = () => {
 
   function handleDropClass() {
     
-    fetch(`http://localhost:3500/schedule/drop/${selectedEvent.id}`, {
+    fetch(`${api}/schedule/drop/${selectedEvent.id}`, {
       method: "PUT",
     })
       .then((response) => response.json())
@@ -81,7 +81,7 @@ const Mainschedule = () => {
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3500/schedule`, {
+    fetch(`${api}/schedule`, {
       method: "GET",
     })
       .then((response) => {

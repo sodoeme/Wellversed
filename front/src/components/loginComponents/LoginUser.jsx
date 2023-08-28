@@ -3,8 +3,10 @@ import { FaUserFriends } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import TextInput from "../signUpComponents/TextInput";
-
+import useApi from "../../hooks/useApi";
 const LoginUser = () => {
+  const api = useApi()
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -26,8 +28,7 @@ const LoginUser = () => {
       alert("Please fill out all required fields.");
       return;
     }
-
-    fetch("http://localhost:3500/volunteer/login", {
+    fetch(`${api}/volunteer/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

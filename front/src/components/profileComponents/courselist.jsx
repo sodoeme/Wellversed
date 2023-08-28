@@ -5,12 +5,12 @@ import Modal from "react-modal";
 import Registerclassform from "./registerclassform";
 import { Link } from "react-router-dom";
 import { useEffect } from 'react';
-
+import useApi from '../../hooks/useApi';
 
 
 
 const Courselist = ({org}) => {
-
+    const api = useApi()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [schedule, setSchedule] = useState([{
       date: "",
@@ -33,8 +33,7 @@ const Courselist = ({org}) => {
   }
 useEffect(() => {
 
-  fetch(
-    `http://localhost:3500/schedule/organization/${org?._id}`,
+  fetch(`${api}/schedule/organization/${org?._id}`,
     {
       method: "GET",
     }

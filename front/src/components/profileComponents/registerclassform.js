@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import User from "./user.css";
 import { useEffect } from "react";
 import DatePicker from 'react-date-picker';
-
+import useApi from "../../hooks/useApi";
 const Registerclassform = ({org}) => {
   const [courses, setCourses] = useState([{ name: "", _id: "" }]);
   const [course, setCourse] = useState({desc:""}); // Initialize course state
   const [selectedDate, setSelectedDate] = useState(new Date());
-
+  const api = useApi()
 
 
   const [formData, setFormData] = useState({
@@ -35,7 +35,7 @@ const Registerclassform = ({org}) => {
     event.preventDefault();
  //post form
 
- fetch("http://localhost:3500/schedule/create", {
+ fetch(`${api}/schedule/create`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const Registerclassform = ({org}) => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:3500/course`, {
+    fetch(`${api}/course`, {
       method: "GET",
     })
       .then((response) => {
