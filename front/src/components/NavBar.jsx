@@ -74,7 +74,7 @@ function NavBar() {
   };
 
   return (
-    <Router>
+   <>
       <div className="header">
         <nav className="nav">
           <div className="nav-header">
@@ -111,7 +111,7 @@ function NavBar() {
         <Route path="/userpf" element={<Userpf />} />
       </Routes>
       <Footer />
-    </Router>
+   </>
   );
 }
 // Hello, I am a new comment
